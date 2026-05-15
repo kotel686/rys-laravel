@@ -46,12 +46,15 @@
                 @endforeach
 
                 @foreach ($videos as $video)
+                    @php
+                        $videoData = json_encode([
+                            'source' => [['src' => $video->videoUrl(), 'type' => 'video/mp4']],
+                            'attributes' => ['preload' => 'metadata', 'controls' => true],
+                        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                    @endphp
                     <a
                         href="{{ $video->videoUrl() }}"
-                        data-video='@json([
-                            "source" => [["src" => $video->videoUrl(), "type" => "video/mp4"]],
-                            "attributes" => ["preload" => "metadata", "controls" => true],
-                        ])'
+                        data-video="{{ $videoData }}"
                         data-poster="{{ $video->posterUrl() }}"
                         data-sub-html="<h4>{{ e($video->title) }}</h4><p>{{ e($video->description) }}</p>"
                         class="block group rounded-lg overflow-hidden bg-white shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300"
