@@ -6,9 +6,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\VideoResource\Pages;
 use App\Models\Video;
-use Filament\Forms;
-use Filament\Forms\Form;
+use BackedEnum;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -19,7 +24,7 @@ class VideoResource extends Resource
 {
     protected static ?string $model = Video::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-film';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-film';
 
     protected static ?string $navigationLabel = 'Videa';
 
@@ -32,21 +37,21 @@ class VideoResource extends Resource
     /**
      * Build the create/edit form.
      */
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
-            Forms\Components\TextInput::make('title')
+        return $schema->components([
+            TextInput::make('title')
                 ->label('Název')
                 ->required()
                 ->maxLength(255),
 
-            Forms\Components\Textarea::make('description')
+            Textarea::make('description')
                 ->label('Popis')
                 ->rows(3)
                 ->maxLength(2000)
                 ->columnSpanFull(),
 
-            Forms\Components\FileUpload::make('video_path')
+            FileUpload::make('video_path')
                 ->label('Video soubor')
                 ->disk('public')
                 ->directory('videos')
@@ -55,7 +60,7 @@ class VideoResource extends Resource
                 ->acceptedFileTypes(['video/mp4', 'video/webm', 'video/quicktime'])
                 ->required(),
 
-            Forms\Components\FileUpload::make('poster_path')
+            FileUpload::make('poster_path')
                 ->label('Náhledový obrázek (poster)')
                 ->image()
                 ->imageEditor()
@@ -65,18 +70,18 @@ class VideoResource extends Resource
                 ->maxSize(4 * 1024)
                 ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp']),
 
-            Forms\Components\Grid::make(3)->schema([
-                Forms\Components\TextInput::make('duration')
+            Grid::make(3)->schema([
+                TextInput::make('duration')
                     ->label('Délka (např. 01:23)')
                     ->maxLength(16),
 
-                Forms\Components\TextInput::make('sort_order')
+                TextInput::make('sort_order')
                     ->label('Pořadí')
                     ->numeric()
                     ->default(0)
                     ->required(),
 
-                Forms\Components\Toggle::make('is_published')
+                Toggle::make('is_published')
                     ->label('Publikováno')
                     ->default(true),
             ]),

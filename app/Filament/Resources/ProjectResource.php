@@ -6,9 +6,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Models\Project;
-use Filament\Forms;
-use Filament\Forms\Form;
+use BackedEnum;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -19,7 +24,7 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 
     protected static ?string $navigationLabel = 'Reference';
 
@@ -32,39 +37,39 @@ class ProjectResource extends Resource
     /**
      * Build the create/edit form.
      */
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
-            Forms\Components\TextInput::make('title')
+        return $schema->components([
+            TextInput::make('title')
                 ->label('Název')
                 ->required()
                 ->maxLength(255),
 
-            Forms\Components\Grid::make(2)->schema([
-                Forms\Components\TextInput::make('location')
+            Grid::make(2)->schema([
+                TextInput::make('location')
                     ->label('Lokalita')
                     ->maxLength(255),
 
-                Forms\Components\TextInput::make('type')
+                TextInput::make('type')
                     ->label('Typ práce')
                     ->maxLength(255),
             ]),
 
-            Forms\Components\Grid::make(2)->schema([
-                Forms\Components\TextInput::make('year')
+            Grid::make(2)->schema([
+                TextInput::make('year')
                     ->label('Rok')
                     ->numeric()
                     ->minValue(1990)
                     ->maxValue(2100),
 
-                Forms\Components\TextInput::make('sort_order')
+                TextInput::make('sort_order')
                     ->label('Pořadí')
                     ->numeric()
                     ->default(0)
                     ->required(),
             ]),
 
-            Forms\Components\FileUpload::make('image_path')
+            FileUpload::make('image_path')
                 ->label('Fotografie')
                 ->image()
                 ->imageEditor()
@@ -75,13 +80,13 @@ class ProjectResource extends Resource
                 ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                 ->required(),
 
-            Forms\Components\Textarea::make('description')
+            Textarea::make('description')
                 ->label('Popis')
                 ->rows(4)
                 ->maxLength(2000)
                 ->columnSpanFull(),
 
-            Forms\Components\Toggle::make('is_published')
+            Toggle::make('is_published')
                 ->label('Publikováno')
                 ->default(true),
         ]);
