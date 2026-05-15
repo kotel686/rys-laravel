@@ -86,6 +86,24 @@ class Media extends Model
     }
 
     /**
+     * Best-effort MIME type derived from the file extension. Used by
+     * lightGallery's video plugin so it can pick a compatible decoder.
+     */
+    public function mimeType(): string
+    {
+        $ext = strtolower(pathinfo($this->file_path, PATHINFO_EXTENSION));
+
+        return match ($ext) {
+            'webm' => 'video/webm',
+            'mov' => 'video/quicktime',
+            'mkv' => 'video/x-matroska',
+            'avi' => 'video/x-msvideo',
+            'ogv', 'ogg' => 'video/ogg',
+            default => 'video/mp4',
+        };
+    }
+
+    /**
      * Scope: only published rows, ordered for public display.
      *
      * @param  Builder<self>  $query
