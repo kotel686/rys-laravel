@@ -1,32 +1,34 @@
 import Alpine from 'alpinejs';
-import lightGallery from 'lightgallery';
-import lgThumbnail from 'lightgallery/plugins/thumbnail';
-import lgVideo from 'lightgallery/plugins/video';
+import GLightbox from 'glightbox';
 
 window.Alpine = Alpine;
 Alpine.start();
 
 /**
- * Initialise lightGallery on every gallery container on the page.
+ * Initialise GLightbox on every gallery container on the page.
  *
- * Each container must use anchor (<a>) children whose `href` points at the
- * full-size asset and (optionally) a `data-sub-html` attribute with caption
- * markup. Videos additionally carry `data-video` / `data-poster`.
- *
- * The lg-zoom plugin is intentionally excluded: it assumes every slide is
- * an image and crashes (`getBoundingClientRect` on undefined) when the
- * active slide is an HTML5 video.
+ * Anchors inside the container carry the standard `.glightbox` class plus
+ * the `data-gallery` group name, so navigation buttons step through every
+ * item (photo or video). Videos additionally use `data-type="video"` and
+ * an optional `data-poster`.
  */
 const initGalleries = () => {
-    document.querySelectorAll('[id$="-gallery"]').forEach((el) => {
-        if (el.dataset.lgInit === '1') return;
-        el.dataset.lgInit = '1';
-        lightGallery(el, {
-            selector: 'a',
-            plugins: [lgThumbnail, lgVideo],
-            speed: 400,
-            download: false,
-            licenseKey: '0000-0000-000-0000',
+    document.querySelectorAll('[id$="-gallery"]').forEach((container) => {
+        if (container.dataset.lbInit === '1') return;
+        container.dataset.lbInit = '1';
+
+        const groupName = container.id;
+        container.querySelectorAll('a.glightbox').forEach((anchor) => {
+            anchor.dataset.gallery = anchor.dataset.gallery || groupName;
+        });
+
+        GLightbox({
+            selector: `#${container.id} a.glightbox`,
+            touchNavigation: true,
+            loop: false,
+            autoplayVideos: true,
+            videosWidth: '90vw',
+            plyr: { css: '', js: '' },
         });
     });
 };

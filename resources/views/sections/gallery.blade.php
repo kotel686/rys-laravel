@@ -10,21 +10,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="media-gallery">
             @foreach ($mediaItems as $item)
                 @if ($item->isVideo())
-                    @php
-                        $videoData = json_encode([
-                            'source' => [['src' => $item->streamUrl(), 'type' => $item->mimeType()]],
-                            'attributes' => ['preload' => 'metadata', 'controls' => true, 'playsinline' => true],
-                        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_APOS | JSON_HEX_AMP);
-                    @endphp
                     <a
-                        href="#"
-                        data-lg-size="1280-720"
-                        data-video='{!! $videoData !!}'
+                        href="{{ $item->streamUrl() }}"
+                        class="glightbox block group rounded-lg overflow-hidden bg-white shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                        data-type="video"
+                        data-gallery="media-gallery"
+                        data-title="{{ $item->title }}"
+                        @if ($item->description)
+                            data-description="{{ $item->description }}"
+                        @endif
                         @if ($item->posterUrl())
                             data-poster="{{ $item->posterUrl() }}"
                         @endif
-                        data-sub-html="<h4>{{ e($item->title) }}</h4><p>{{ e($item->description) }}</p>"
-                        class="block group rounded-lg overflow-hidden bg-white shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                        data-width="1280"
+                        data-height="720"
                     >
                         <div class="relative h-64 overflow-hidden bg-industrial-dark pointer-events-none">
                             @if ($item->posterUrl())
@@ -57,9 +56,13 @@
                 @else
                     <a
                         href="{{ $item->fileUrl() }}"
-                        data-lg-size="1600-1200"
-                        data-sub-html="<h4>{{ e($item->title) }}</h4><p>{{ e($item->description) }}</p>"
-                        class="block group rounded-lg overflow-hidden bg-white shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300"
+                        class="glightbox block group rounded-lg overflow-hidden bg-white shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300"
+                        data-type="image"
+                        data-gallery="media-gallery"
+                        data-title="{{ $item->title }}"
+                        @if ($item->description)
+                            data-description="{{ $item->description }}"
+                        @endif
                     >
                         <div class="relative h-64 overflow-hidden pointer-events-none">
                             <img

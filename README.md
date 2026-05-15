@@ -13,7 +13,8 @@ prototype shipped in `rys-vyskove-stavby-web-main.zip`.
 - **Filament v5** (admin panel, file uploads, image editor)
 - **Tailwind v4** via `@tailwindcss/vite`
 - **AlpineJS** (mobile nav, small interactions)
-- **lightGallery** (front-end lightbox for projects and media gallery)
+- **GLightbox** (MIT-licensed front-end lightbox for the media gallery,
+  natively supports both HTML5 images and videos)
 - **SQLite** by default (zero-setup)
 
 ## Project layout
@@ -72,19 +73,22 @@ php artisan serve
 - Uploads land on the `public` disk (`storage/app/public`) and are exposed
   via the `storage:link` symlink.
 
-## Front-end gallery (lightGallery)
+## Front-end gallery (GLightbox)
 
-`resources/js/app.js` auto-initialises lightGallery on every element whose
-id ends with `-gallery`:
+`resources/js/app.js` auto-initialises GLightbox on every container whose
+id ends with `-gallery`. Each anchor child carries:
 
-- `#projects-gallery` – Moje reference (images + captions),
-- `#media-gallery`    – Galerie z mé práce (photos + videos).
+- `class="glightbox"` and `data-gallery="<container-id>"` so the gallery
+  buttons cycle through every item,
+- `href` pointing at the full asset (photo URL, or the video stream
+  endpoint),
+- `data-title` / `data-description` for the caption,
+- for video items: `data-type="video"`, plus `data-poster` and
+  `data-width`/`data-height` to set the player aspect ratio.
 
-Anchor children carry `href` (full asset), `data-sub-html` (caption HTML)
-and, for videos, `data-video` + `data-poster`. The Blade templates render
-exactly that structure so the thumbnail look stays identical to the
-original site, only the click behaviour changes (lightbox instead of a
-modal).
+Card markup (image, badges, duration, captions) stays identical to the
+original React site; GLightbox just intercepts the click and opens the
+lightbox.
 
 ## Security choices
 
