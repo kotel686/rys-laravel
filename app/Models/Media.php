@@ -68,11 +68,25 @@ class Media extends Model
     }
 
     /**
-     * Public URL for the main asset.
+     * Public URL for the main asset. Images go straight to the storage
+     * symlink, videos are routed through the streaming controller so the
+     * built-in `php artisan serve` (which cannot honour Range requests
+     * against static files) does not break playback.
      */
     public function fileUrl(): string
     {
         return Storage::disk('public')->url($this->file_path);
+    }
+
+    /**
+     * URL that the frontend should use as the playable video source. For
+     * images it is identical to {@see self::fileUrl()}.
+     */
+    public function streamUrl(): string
+    {
+        return $this->isVideo()
+            ? route('media.stream', ['media' => $this->getKey()])
+            : $this->fileUrl();
     }
 
     /**

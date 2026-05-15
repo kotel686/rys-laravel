@@ -12,13 +12,13 @@
                     @if ($item->isVideo())
                         @php
                             $videoData = json_encode([
-                                'source' => [['src' => $item->fileUrl(), 'type' => $item->mimeType()]],
+                                'source' => [['src' => $item->streamUrl(), 'type' => $item->mimeType()]],
                                 'attributes' => ['preload' => 'metadata', 'controls' => true, 'playsinline' => true],
-                            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_APOS | JSON_HEX_AMP);
                         @endphp
                         <a
-                            href="{{ $item->fileUrl() }}"
-                            data-video="{{ $videoData }}"
+                            href="{{ $item->streamUrl() }}"
+                            data-video='{!! $videoData !!}'
                             @if ($item->posterUrl())
                                 data-poster="{{ $item->posterUrl() }}"
                             @endif
@@ -29,7 +29,7 @@
                                 @if ($item->posterUrl())
                                     <img src="{{ $item->posterUrl() }}" alt="{{ $item->title }}" class="w-full h-full object-cover opacity-90" loading="lazy">
                                 @else
-                                    <video src="{{ $item->fileUrl() }}" class="w-full h-full object-cover" preload="metadata" muted></video>
+                                    <video src="{{ $item->streamUrl() }}" class="w-full h-full object-cover" preload="metadata" muted playsinline></video>
                                 @endif
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <span class="bg-white/20 backdrop-blur-sm rounded-full p-4">
