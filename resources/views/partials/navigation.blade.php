@@ -11,8 +11,12 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#hero" class="text-industrial-dark hover:text-primary transition-colors font-medium">Domů</a>
                 <a href="#services" class="text-industrial-dark hover:text-primary transition-colors font-medium">Služby</a>
-                <a href="#gallery" class="text-industrial-dark hover:text-primary transition-colors font-medium">Reference</a>
-                <a href="#galerie" class="text-industrial-dark hover:text-primary transition-colors font-medium">Galerie</a>
+                @if (! empty($projects) && $projects->isNotEmpty())
+                    <a href="#gallery" class="text-industrial-dark hover:text-primary transition-colors font-medium">Reference</a>
+                @endif
+                @if (! empty($mediaItems) && $mediaItems->isNotEmpty())
+                    <a href="#galerie" class="text-industrial-dark hover:text-primary transition-colors font-medium">Galerie</a>
+                @endif
                 <a href="#contact" class="text-industrial-dark hover:text-primary transition-colors font-medium">Kontakt</a>
             </div>
 
@@ -44,8 +48,12 @@
             <div class="flex flex-col space-y-2">
                 <a @click="open = false" href="#hero" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Domů</a>
                 <a @click="open = false" href="#services" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Služby</a>
-                <a @click="open = false" href="#gallery" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Reference</a>
-                <a @click="open = false" href="#galerie" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Galerie</a>
+                @if (! empty($projects) && $projects->isNotEmpty())
+                    <a @click="open = false" href="#gallery" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Reference</a>
+                @endif
+                @if (! empty($mediaItems) && $mediaItems->isNotEmpty())
+                    <a @click="open = false" href="#galerie" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Galerie</a>
+                @endif
                 <a @click="open = false" href="#contact" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Kontakt</a>
                 <div class="flex flex-col space-y-2 px-4 pt-4 border-t border-border">
                     <a href="tel:+420776089310" class="inline-flex items-center px-3 py-2 text-sm border border-primary text-primary rounded-md hover:bg-primary hover:text-white">Zavolat +420 776 089 310</a>

@@ -7,10 +7,7 @@
             </p>
         </div>
 
-        @if ($mediaItems->isEmpty())
-            <p class="text-center text-muted-foreground">Galerie je zatím prázdná, brzy se sem podíváme.</p>
-        @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="media-gallery">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="media-gallery">
                 @foreach ($mediaItems as $item)
                     @if ($item->isVideo())
                         @php
@@ -89,6 +86,5 @@
                     @endif
                 @endforeach
             </div>
-        @endif
     </div>
 </section>

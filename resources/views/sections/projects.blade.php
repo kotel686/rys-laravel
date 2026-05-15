@@ -8,10 +8,7 @@
             </p>
         </div>
 
-        @if ($projects->isEmpty())
-            <p class="text-center text-muted-foreground">Brzy zde přibydou ukázky realizovaných projektů.</p>
-        @else
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($projects as $project)
                     <article class="group rounded-lg overflow-hidden bg-white shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300">
                         <div class="relative h-64 overflow-hidden">
@@ -45,8 +42,7 @@
                             </div>
                         </div>
                     </article>
-                @endforeach
-            </div>
-        @endif
+            @endforeach
+        </div>
     </div>
 </section>
