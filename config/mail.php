@@ -115,4 +115,15 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Contact form recipient
+    |--------------------------------------------------------------------------
+    |
+    | Where to send messages posted to the public /kontakt endpoint.
+    |
+    */
+
+    'contact_recipient' => env('CONTACT_RECIPIENT', 'franta.rys@gmail.com'),
+
 ];

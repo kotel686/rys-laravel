@@ -1,58 +1,113 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Rys – Výškové práce (Laravel + Filament v5)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Public landing page for **František Rys – Výškové práce** plus a Filament v5
+admin panel that manages the dynamic content (reference projects, gallery
+photos and videos).
 
-## About Laravel
+The visual design is a one-to-one port of the original React/Vite/Tailwind
+prototype shipped in `rys-vyskove-stavby-web-main.zip`.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **PHP 8.3** / **Laravel 13**
+- **Filament v5** (admin panel, file uploads, image editor)
+- **Tailwind v4** via `@tailwindcss/vite`
+- **AlpineJS** (mobile nav, small interactions)
+- **lightGallery** (front-end lightbox for projects and media gallery)
+- **SQLite** by default (zero-setup)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project layout
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```
+app/
+  Filament/Resources/           ProjectResource, PhotoResource, VideoResource
+  Http/Controllers/             HomeController, ContactController
+  Http/Requests/ContactRequest  Validation + honeypot
+  Models/                       Project, Photo, Video, User (FilamentUser)
+  Providers/Filament/           AdminPanelProvider (Filament v5)
+resources/views/
+  layouts/app.blade.php         Master layout (Vite, CSRF)
+  home.blade.php                Composition of all sections
+  partials/                     navigation, footer
+  sections/                     hero, services, projects, gallery, contact
+database/
+  migrations/                   projects, photos, videos
+  seeders/                      AdminUserSeeder reads ADMIN_* env vars
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Setup
 
-## Contributing
+```bash
+cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# fill in at least these — never commit them
+#   ADMIN_NAME="Administrátor"
+#   ADMIN_EMAIL=admin@example.com
+#   ADMIN_PASSWORD='at-least-12-chars-strong-passphrase'
+#   ADMIN_EMAILS=admin@example.com         # comma-separated allow-list
+#   CONTACT_RECIPIENT=franta.rys@gmail.com
 
-## Code of Conduct
+composer install
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+php artisan storage:link
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+npm install
+npm run build       # or `npm run dev` for HMR
+php artisan serve
+```
 
-## Security Vulnerabilities
+- Public site:   <http://localhost:8000/>
+- Admin login:   <http://localhost:8000/admin>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Admin
 
-## License
+- `/admin` is served by Filament v5 (panel ID `admin`).
+- Only users whose email appears in `ADMIN_EMAILS` **and** whose
+  `email_verified_at` is set may log in (`App\Models\User::canAccessPanel`).
+- Initial admin is created idempotently from `ADMIN_*` env vars by
+  `Database\Seeders\AdminUserSeeder`. After first login, rotate the password
+  from the panel and remove `ADMIN_PASSWORD` from the deployment env.
+- Uploads land on the `public` disk (`storage/app/public`) and are exposed
+  via the `storage:link` symlink.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Front-end gallery (lightGallery)
+
+`resources/js/app.js` auto-initialises lightGallery on every element whose
+id ends with `-gallery`:
+
+- `#projects-gallery` – Moje reference (images + captions),
+- `#media-gallery`    – Galerie z mé práce (photos + videos).
+
+Anchor children carry `href` (full asset), `data-sub-html` (caption HTML)
+and, for videos, `data-video` + `data-poster`. The Blade templates render
+exactly that structure so the thumbnail look stays identical to the
+original site, only the click behaviour changes (lightbox instead of a
+modal).
+
+## Security choices
+
+- `AppServiceProvider` forces HTTPS in production and installs a default
+  password policy (≥12 chars, mixed case, digits, symbols, `uncompromised`
+  check on production – pwned-passwords API via Laravel).
+- Admin panel access is **fail-closed**: empty `ADMIN_EMAILS` denies
+  everyone. `email_verified_at` is required as a second gate.
+- Sessions are encrypted (`SESSION_ENCRYPT=true`), `same_site=lax`,
+  `secure_cookie` should be `true` behind TLS.
+- Contact form: CSRF token + Laravel validation, honeypot field
+  (`website`), explicit GDPR consent checkbox, route-level
+  `throttle:10,60` middleware **and** an IP-based limit of 5 submissions
+  per hour enforced inside `ContactController` (defence in depth).
+- Bcrypt rounds default to 12; passwords are hashed on cast (`'password'
+  => 'hashed'`).
+- File uploads in Filament restrict MIME types and max size for images
+  (8 MB) and videos (200 MB).
+- No hard-coded credentials anywhere – everything sensitive is in `.env`
+  and the seeder refuses weak passwords (`< 12` chars).
+
+## Original React prototype
+
+The original React/Vite source (for visual reference) lives in
+`/workspace/uploads/rys-web-source/rys-vyskove-stavby-web-main`. It is not
+needed at runtime.

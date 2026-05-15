@@ -114,4 +114,17 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin allow-list
+    |--------------------------------------------------------------------------
+    |
+    | Comma-separated list of email addresses that are permitted to log in to
+    | the Filament admin panel. Everyone else is rejected at the panel gate
+    | (see App\Models\User::canAccessPanel). Empty list = fail-closed.
+    |
+    */
+
+    'admin_emails' => env('ADMIN_EMAILS', ''),
+
 ];
