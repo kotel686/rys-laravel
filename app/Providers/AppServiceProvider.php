@@ -6,7 +6,6 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Validation\Rules\Password;
 
 /**
  * Application-level service provider.
@@ -22,22 +21,13 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap application services. Applies a few defensive defaults:
-     *
-     *  - forces HTTPS URL generation in production,
-     *  - sets a strong default password policy globally,
-     *  - prevents accidental destructive actions on production models.
+     * Bootstrap application services. Forces HTTPS URL generation in
+     * production environments.
      */
     public function boot(): void
     {
         if ($this->app->environment('production')) {
             URL::forceScheme('https');
         }
-
-        Password::defaults(static function (): Password {
-            $rule = Password::min(12)->letters()->mixedCase()->numbers()->symbols();
-
-            return app()->isProduction() ? $rule->uncompromised() : $rule;
-        });
     }
 }
