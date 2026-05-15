@@ -35,7 +35,7 @@ class ContactMessageResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Poptávky';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 30;
 
     /**
      * Surface unhandled submissions on the sidebar so the admin notices new

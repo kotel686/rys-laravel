@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\PhotoResource\Pages;
+namespace App\Filament\Resources\MediaResource\Pages;
 
-use App\Filament\Resources\PhotoResource;
+use App\Filament\Resources\MediaResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 /**
- * Edit page for {@see PhotoResource}.
+ * Edit page for {@see MediaResource}.
  */
-class EditPhoto extends EditRecord
+class EditMedia extends EditRecord
 {
-    protected static string $resource = PhotoResource::class;
+    protected static string $resource = MediaResource::class;
 
     /**
      * Header actions.

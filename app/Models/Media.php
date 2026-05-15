@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Video shown in the public media gallery.
+ * A piece of media (photo or video) shown in the public media gallery.
  *
  * @property int $id
+ * @property string $type      'image' or 'video'
  * @property string $title
  * @property string|null $description
- * @property string $video_path
+ * @property string $file_path
  * @property string|null $poster_path
  * @property string|null $duration
  * @property int $sort_order
@@ -24,16 +25,27 @@ use Illuminate\Support\Facades\Storage;
  * @property \Illuminate\Support\Carbon $updated_at
  */
 #[Fillable([
+    'type',
     'title',
     'description',
-    'video_path',
+    'file_path',
     'poster_path',
     'duration',
     'sort_order',
     'is_published',
 ])]
-class Video extends Model
+class Media extends Model
 {
+    public const TYPE_IMAGE = 'image';
+
+    public const TYPE_VIDEO = 'video';
+
+    /**
+     * Force the conventional table name (Eloquent would otherwise look for
+     * `medias`).
+     */
+    protected $table = 'media';
+
     /**
      * Attribute casts.
      *
@@ -48,15 +60,23 @@ class Video extends Model
     }
 
     /**
-     * Public URL of the video file.
+     * Is this row a video?
      */
-    public function videoUrl(): string
+    public function isVideo(): bool
     {
-        return Storage::disk('public')->url($this->video_path);
+        return $this->type === self::TYPE_VIDEO;
     }
 
     /**
-     * Public URL of the optional poster image.
+     * Public URL for the main asset.
+     */
+    public function fileUrl(): string
+    {
+        return Storage::disk('public')->url($this->file_path);
+    }
+
+    /**
+     * Public URL of the optional video poster image.
      */
     public function posterUrl(): ?string
     {

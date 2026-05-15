@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Photo;
+use App\Models\Media;
 use App\Models\Project;
-use App\Models\Video;
 use Illuminate\Contracts\View\View;
 
 /**
@@ -15,14 +14,13 @@ use Illuminate\Contracts\View\View;
 class HomeController extends Controller
 {
     /**
-     * Render the home page with published projects, photos and videos.
+     * Render the home page with published projects and media.
      */
     public function __invoke(): View
     {
         return view('home', [
             'projects' => Project::query()->published()->get(),
-            'photos' => Photo::query()->published()->get(),
-            'videos' => Video::query()->published()->get(),
+            'mediaItems' => Media::query()->published()->get(),
         ]);
     }
 }

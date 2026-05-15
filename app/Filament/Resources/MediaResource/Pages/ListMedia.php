@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\VideoResource\Pages;
+namespace App\Filament\Resources\MediaResource\Pages;
 
-use App\Filament\Resources\VideoResource;
+use App\Filament\Resources\MediaResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 /**
- * List page for {@see VideoResource}.
+ * List page for {@see MediaResource}.
  */
-class ListVideos extends ListRecords
+class ListMedia extends ListRecords
 {
-    protected static string $resource = VideoResource::class;
+    protected static string $resource = MediaResource::class;
 
     /**
      * Header actions.
