@@ -2,8 +2,12 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "laravel/laravel",
     "type": "project",
-    "description": "František Rys – Výškové práce (Laravel + Filament v5).",
-    "keywords": ["laravel", "filament", "rys"],
+    "description": "Franti\u0161ek Rys \u2013 V\u00fd\u0161kov\u00e9 pr\u00e1ce (Laravel + Filament v5).",
+    "keywords": [
+        "laravel",
+        "filament",
+        "rys"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.3",
@@ -54,7 +58,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
