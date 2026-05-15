@@ -62,12 +62,14 @@ class MediaResource extends Resource
                 ->inline()
                 ->default(Media::TYPE_IMAGE)
                 ->required()
-                ->live(),
+                ->live()
+                ->columnSpanFull(),
 
             TextInput::make('title')
                 ->label('Název')
                 ->required()
-                ->maxLength(255),
+                ->maxLength(255)
+                ->columnSpanFull(),
 
             Textarea::make('description')
                 ->label('Popis')
@@ -76,23 +78,35 @@ class MediaResource extends Resource
                 ->columnSpanFull(),
 
             FileUpload::make('file_path')
-                ->label(fn (Get $get): string => $get('type') === Media::TYPE_VIDEO
-                    ? 'Video soubor'
-                    : 'Fotografie')
+                ->label('Fotografie')
                 ->disk('public')
-                ->directory(fn (Get $get): string => $get('type') === Media::TYPE_VIDEO
-                    ? 'videos'
-                    : 'photos')
+                ->directory('photos')
                 ->visibility('public')
-                ->image(fn (Get $get): bool => $get('type') !== Media::TYPE_VIDEO)
-                ->imageEditor(fn (Get $get): bool => $get('type') !== Media::TYPE_VIDEO)
-                ->maxSize(fn (Get $get): int => $get('type') === Media::TYPE_VIDEO
-                    ? 200 * 1024
-                    : 8 * 1024)
-                ->acceptedFileTypes(fn (Get $get): array => $get('type') === Media::TYPE_VIDEO
-                    ? ['video/mp4', 'video/webm', 'video/quicktime']
-                    : ['image/jpeg', 'image/png', 'image/webp'])
-                ->required(),
+                ->image()
+                ->imageEditor()
+                ->maxSize(8 * 1024)
+                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                ->required()
+                ->visible(fn (Get $get): bool => $get('type') !== Media::TYPE_VIDEO)
+                ->columnSpanFull(),
+
+            FileUpload::make('file_path')
+                ->label('Video soubor')
+                ->disk('public')
+                ->directory('videos')
+                ->visibility('public')
+                ->maxSize(200 * 1024)
+                ->acceptedFileTypes([
+                    'video/mp4',
+                    'video/webm',
+                    'video/quicktime',
+                    'video/x-matroska',
+                    'video/x-msvideo',
+                    'video/ogg',
+                ])
+                ->required()
+                ->visible(fn (Get $get): bool => $get('type') === Media::TYPE_VIDEO)
+                ->columnSpanFull(),
 
             FileUpload::make('poster_path')
                 ->label('Náhledový obrázek (poster)')
