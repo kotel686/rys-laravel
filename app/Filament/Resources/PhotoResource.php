@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PhotoResource\Pages;
 use App\Models\Photo;
 use BackedEnum;
+use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -106,12 +107,12 @@ class PhotoResource extends Resource
                 Tables\Filters\TernaryFilter::make('is_published')->label('Publikováno'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
