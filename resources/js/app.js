@@ -28,7 +28,6 @@ const initGalleries = () => {
             loop: false,
             autoplayVideos: true,
             videosWidth: '90vw',
-            plyr: { css: '', js: '' },
         });
     });
 };
