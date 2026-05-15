@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Models\ContactMessage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 
 /**
  * Handle submissions of the public contact form.
  *
- * Validation lives in {@see ContactRequest}. This controller adds an
- * additional rate limit on top of the route-level `throttle` middleware so
- * we are protected even if a deployment forgets the middleware, and logs
- * every accepted request for audit purposes.
+ * Messages are persisted to the `contact_messages` table and reviewed in the
+ * Filament admin panel. No e-mail is sent. The route already carries a
+ * `throttle:10,60` middleware; this controller adds a stricter per-IP rate
+ * limit (5/hour) as defence-in-depth.
  */
 class ContactController extends Controller
 {
@@ -31,7 +31,7 @@ class ContactController extends Controller
     private const HOURLY_LIMIT = 5;
 
     /**
-     * Handle a contact form submission.
+     * Store an incoming contact-form submission.
      */
     public function store(ContactRequest $request): RedirectResponse
     {
@@ -48,34 +48,17 @@ class ContactController extends Controller
         /** @var array{name: string, email: string, phone: ?string, message: string} $data */
         $data = $request->safe()->only(['name', 'email', 'phone', 'message']);
 
-        $recipient = (string) config('mail.contact_recipient', 'franta.rys@gmail.com');
+        $message = ContactMessage::query()->create([
+            'name' => $data['name'],
+            'email' => mb_strtolower($data['email']),
+            'phone' => $data['phone'] ?? null,
+            'message' => $data['message'],
+            'ip_address' => $request->ip(),
+        ]);
 
-        try {
-            Mail::raw(
-                "Nová poptávka z webu\n\n" .
-                "Jméno: {$data['name']}\n" .
-                "E-mail: {$data['email']}\n" .
-                'Telefon: ' . ($data['phone'] ?? '-') . "\n\n" .
-                "Zpráva:\n{$data['message']}",
-                static function ($message) use ($recipient, $data): void {
-                    $message->to($recipient)
-                        ->subject('Nová poptávka – Rys – Výškové práce')
-                        ->replyTo($data['email'], $data['name']);
-                },
-            );
-        } catch (\Throwable $e) {
-            Log::error('Contact mail failed', [
-                'error' => $e->getMessage(),
-                'ip' => $request->ip(),
-            ]);
-
-            return back()
-                ->withInput()
-                ->with('contact_error', 'Zprávu se nepodařilo odeslat. Zkuste to prosím znovu.');
-        }
-
-        Log::info('Contact form submitted', [
-            'email' => $data['email'],
+        Log::info('Contact message stored', [
+            'id' => $message->id,
+            'email' => $message->email,
             'ip' => $request->ip(),
         ]);
 
