@@ -27,15 +27,15 @@ class ClimbingPriceResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-currency-dollar';
 
-    protected static ?string $navigationLabel = 'Lezecká stěna – Ceník';
+    protected static ?string $navigationLabel = 'Položky ceníku';
 
     protected static ?string $modelLabel = 'Položka ceníku';
 
     protected static ?string $pluralModelLabel = 'Ceník';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Stěna – Ceník';
 
-    protected static ?int $navigationSort = 50;
+    protected static ?int $navigationSort = 10;
 
     /**
      * Build the create/edit form.

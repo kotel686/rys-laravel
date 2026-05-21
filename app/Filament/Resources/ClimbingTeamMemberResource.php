@@ -28,15 +28,15 @@ class ClimbingTeamMemberResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-identification';
 
-    protected static ?string $navigationLabel = 'Lezecká stěna – Tým';
+    protected static ?string $navigationLabel = 'Tým';
 
     protected static ?string $modelLabel = 'Člen týmu';
 
     protected static ?string $pluralModelLabel = 'Tým';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Stěna – O stěně';
 
-    protected static ?int $navigationSort = 45;
+    protected static ?int $navigationSort = 20;
 
     protected static ?string $recordTitleAttribute = 'name';
 

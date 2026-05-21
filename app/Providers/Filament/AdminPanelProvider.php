@@ -40,6 +40,14 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Red,
             ])
+            ->navigationGroups([
+                'Výškové práce',
+                'Lezecká stěna',
+                'Stěna – O stěně',
+                'Stěna – Kroužky',
+                'Stěna – Ceník',
+                'Stěna – Aktuality',
+            ])
             ->navigationItems([
                 NavigationItem::make('Web Výškové práce')
                     ->url(fn (): string => url('/'), shouldOpenInNewTab: true)

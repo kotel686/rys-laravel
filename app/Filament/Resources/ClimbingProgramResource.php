@@ -28,15 +28,15 @@ class ClimbingProgramResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
 
-    protected static ?string $navigationLabel = 'Lezecká stěna – Kroužky';
+    protected static ?string $navigationLabel = 'Programy';
 
     protected static ?string $modelLabel = 'Program';
 
-    protected static ?string $pluralModelLabel = 'Programy (kroužky)';
+    protected static ?string $pluralModelLabel = 'Programy';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Stěna – Kroužky';
 
-    protected static ?int $navigationSort = 40;
+    protected static ?int $navigationSort = 10;
 
     protected static ?string $recordTitleAttribute = 'title';
 

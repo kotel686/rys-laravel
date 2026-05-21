@@ -26,15 +26,15 @@ class ClimbingEquipmentItemResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-list-bullet';
 
-    protected static ?string $navigationLabel = 'O stěně – Vybavení';
+    protected static ?string $navigationLabel = 'Vybavení';
 
     protected static ?string $modelLabel = 'Položka vybavení';
 
     protected static ?string $pluralModelLabel = 'Vybavení';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Stěna – O stěně';
 
-    protected static ?int $navigationSort = 47;
+    protected static ?int $navigationSort = 40;
 
     protected static ?string $recordTitleAttribute = 'name';
 

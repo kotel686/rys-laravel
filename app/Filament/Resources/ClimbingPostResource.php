@@ -32,15 +32,15 @@ class ClimbingPostResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationLabel = 'Lezecká stěna – Aktuality';
+    protected static ?string $navigationLabel = 'Příspěvky';
 
     protected static ?string $modelLabel = 'Aktualita';
 
     protected static ?string $pluralModelLabel = 'Aktuality';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Stěna – Aktuality';
 
-    protected static ?int $navigationSort = 60;
+    protected static ?int $navigationSort = 10;
 
     protected static ?string $recordTitleAttribute = 'title';
 

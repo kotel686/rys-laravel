@@ -26,15 +26,15 @@ class ClimbingWallParameterResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
-    protected static ?string $navigationLabel = 'O stěně – Parametry stěny';
+    protected static ?string $navigationLabel = 'Parametry stěny';
 
     protected static ?string $modelLabel = 'Parametr stěny';
 
     protected static ?string $pluralModelLabel = 'Parametry stěny';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Stěna – O stěně';
 
-    protected static ?int $navigationSort = 46;
+    protected static ?int $navigationSort = 30;
 
     protected static ?string $recordTitleAttribute = 'label';
 

@@ -29,15 +29,15 @@ class ClimbingSettingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'O stěně – Úvodní text';
+    protected static ?string $navigationLabel = 'Úvodní text';
 
     protected static ?string $modelLabel = 'Úvodní text';
 
     protected static ?string $pluralModelLabel = 'Úvodní text';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Stěna – O stěně';
 
-    protected static ?int $navigationSort = 44;
+    protected static ?int $navigationSort = 10;
 
     protected static ?string $recordTitleAttribute = 'label';
 
