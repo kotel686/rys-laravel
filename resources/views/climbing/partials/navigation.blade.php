@@ -8,6 +8,7 @@
         ['label' => 'O stěně', 'route' => 'climbing.about'],
         ['label' => 'Ceník', 'route' => 'climbing.pricing'],
         ['label' => 'Kroužky a oddíl', 'route' => 'climbing.programs'],
+        ['label' => 'Aktuality', 'route' => 'climbing.news.index'],
         ['label' => 'Kontakt', 'route' => 'climbing.contact'],
     ];
 @endphp

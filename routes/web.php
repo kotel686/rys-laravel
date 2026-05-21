@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\ClimbingController;
+use App\Http\Controllers\ClimbingNewsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MediaController;
@@ -37,4 +38,7 @@ Route::prefix('lezeckastena')->name('climbing.')->group(function (): void {
     Route::get('/cenik', [ClimbingController::class, 'pricing'])->name('pricing');
     Route::get('/krouzky', [ClimbingController::class, 'programs'])->name('programs');
     Route::get('/kontakt', [ClimbingController::class, 'contact'])->name('contact');
+
+    Route::get('/aktuality', [ClimbingNewsController::class, 'index'])->name('news.index');
+    Route::get('/aktuality/{slug}', [ClimbingNewsController::class, 'show'])->name('news.show');
 });

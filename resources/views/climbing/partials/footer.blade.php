@@ -19,6 +19,7 @@
                     <li><a href="{{ route('climbing.about') }}" class="hover:text-primary transition-colors">O stěně</a></li>
                     <li><a href="{{ route('climbing.pricing') }}" class="hover:text-primary transition-colors">Ceník</a></li>
                     <li><a href="{{ route('climbing.programs') }}" class="hover:text-primary transition-colors">Kroužky a oddíl</a></li>
+                    <li><a href="{{ route('climbing.news.index') }}" class="hover:text-primary transition-colors">Aktuality</a></li>
                     <li><a href="{{ route('climbing.contact') }}" class="hover:text-primary transition-colors">Kontakt</a></li>
                 </ul>
             </div>
