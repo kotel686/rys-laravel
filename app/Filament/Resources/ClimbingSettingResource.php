@@ -29,40 +29,29 @@ class ClimbingSettingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationLabel = 'Lezecká stěna – Texty';
+    protected static ?string $navigationLabel = 'O stěně – Úvodní text';
 
-    protected static ?string $modelLabel = 'Text na stránce';
+    protected static ?string $modelLabel = 'Úvodní text';
 
-    protected static ?string $pluralModelLabel = 'Texty na stránkách';
+    protected static ?string $pluralModelLabel = 'Úvodní text';
 
     protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
 
-    protected static ?int $navigationSort = 30;
+    protected static ?int $navigationSort = 44;
 
     protected static ?string $recordTitleAttribute = 'label';
 
     /**
-     * Build the create/edit form.
+     * Build the edit form. The single seeded row is edited only – no
+     * `key` field is exposed since it's a technical identifier wired to
+     * the Blade template.
      */
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            TextInput::make('label')
-                ->label('Popis textu')
-                ->helperText('Pomocný název – kde se text na webu zobrazuje.')
-                ->required()
-                ->maxLength(160),
-
-            TextInput::make('key')
-                ->label('Klíč (technický)')
-                ->helperText('Identifikátor, na který odkazuje Blade šablona. Měňte pouze pokud víte, co děláte.')
-                ->required()
-                ->unique(ignoreRecord: true)
-                ->disabledOn('edit')
-                ->maxLength(120),
-
             RichEditor::make('value')
-                ->label('Obsah')
+                ->label('Úvodní text na stránce O stěně')
+                ->helperText('Zobrazuje se hned pod nadpisem "Náš příběh" na /lezeckastena/o-stene.')
                 ->toolbarButtons([
                     'bold', 'italic', 'underline', 'strike',
                     'h2', 'h3',
@@ -81,23 +70,15 @@ class ClimbingSettingResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('label')
-                    ->label('Popis textu')
-                    ->searchable()
-                    ->sortable(),
-
-                Tables\Columns\TextColumn::make('key')
-                    ->label('Klíč')
-                    ->toggleable()
-                    ->searchable(),
+                    ->label('Co se edituje'),
 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Naposledy upraveno')
                     ->dateTime('j. n. Y H:i')
                     ->sortable(),
             ])
-            ->defaultSort('label')
             ->actions([
-                Actions\EditAction::make(),
+                Actions\EditAction::make()->label('Upravit text'),
             ])
             ->bulkActions([]);
     }
