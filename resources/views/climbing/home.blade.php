@@ -52,8 +52,8 @@
 
 @section('climbing-content')
     <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-gradient-industrial">
-            <div class="absolute inset-0 bg-industrial-dark/70"></div>
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/climbing/hero.png')">
+            <div class="absolute inset-0 bg-industrial-dark/65"></div>
         </div>
 
         <div class="relative z-10 container mx-auto px-4 text-center text-white py-20">
