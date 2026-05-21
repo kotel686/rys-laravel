@@ -17,6 +17,7 @@
                 @if (! empty($mediaItems) && $mediaItems->isNotEmpty())
                     <a href="#galerie" class="text-industrial-dark hover:text-primary transition-colors font-medium">Galerie</a>
                 @endif
+                <a href="{{ route('climbing.home') }}" class="text-industrial-dark hover:text-primary transition-colors font-medium">Lezecká stěna</a>
                 <a href="#contact" class="text-industrial-dark hover:text-primary transition-colors font-medium">Kontakt</a>
             </div>
 
@@ -54,6 +55,7 @@
                 @if (! empty($mediaItems) && $mediaItems->isNotEmpty())
                     <a @click="open = false" href="#galerie" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Galerie</a>
                 @endif
+                <a @click="open = false" href="{{ route('climbing.home') }}" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Lezecká stěna</a>
                 <a @click="open = false" href="#contact" class="px-4 py-2 text-industrial-dark hover:text-primary font-medium">Kontakt</a>
                 <div class="flex flex-col space-y-2 px-4 pt-4 border-t border-border">
                     <a href="tel:+420776089310" class="inline-flex items-center px-3 py-2 text-sm border border-primary text-primary rounded-md hover:bg-primary hover:text-white">Zavolat +420 776 089 310</a>

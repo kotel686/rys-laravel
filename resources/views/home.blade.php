@@ -13,6 +13,8 @@
         @include('sections.gallery', ['mediaItems' => $mediaItems])
     @endif
 
+    @include('sections.climbing')
+
     @include('sections.contact')
     @include('partials.footer')
 @endsection
