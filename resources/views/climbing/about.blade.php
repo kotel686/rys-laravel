@@ -1,14 +1,7 @@
 @php
+    /** @var string $story */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingTeamMember> $team */
     $title = 'O stěně – Lezecká stěna';
-
-    /** @var list<array{name:string,role:string,bio:string}> $team */
-    $team = [
-        [
-            'name' => 'František Rys',
-            'role' => 'Hlavní trenér',
-            'bio' => 'Historicky první reprezentant ČR v paralezení, první medailista z mezinárodní soutěže (3. místo z ME ve Villars).',
-        ],
-    ];
 
     /** @var list<array{label:string,value:string}> $parameters */
     $parameters = [
@@ -43,42 +36,50 @@
 
     <section class="pb-20">
         <div class="container mx-auto px-4 max-w-4xl">
-            <p class="text-lg text-industrial-medium leading-relaxed mb-6">
-                Lezecká stěna vznikla z lásky k lezení a touhy nabídnout dětem
-                i dospělým prostor, kde si můžou vyzkoušet něco nového, posunout
-                své hranice a najít komunitu lidí se stejným nadšením.
-            </p>
-            <p class="text-lg text-industrial-medium leading-relaxed">
-                Provozuje ji <a href="{{ url('/') }}" class="text-primary hover:text-primary-hover font-medium">František Rys – Výškové práce</a>,
-                takže za vším stojí roky zkušeností s prací ve výškách,
-                důraz na bezpečnost a profesionalitu.
-            </p>
-        </div>
-    </section>
-
-    <section class="py-20 bg-gradient-subtle">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Náš tým</h2>
-                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Jsme tým nadšenců, co dělá práci srdcem.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                @foreach ($team as $member)
-                    <article class="bg-white rounded-lg shadow-subtle p-8 text-center">
-                        <div class="mx-auto h-32 w-32 rounded-full bg-gradient-industrial mb-6 flex items-center justify-center text-white text-3xl font-bold">
-                            {{ collect(explode(' ', $member['name']))->map(fn (string $part) => mb_substr($part, 0, 1))->implode('') }}
-                        </div>
-                        <h3 class="text-2xl font-bold text-industrial-dark mb-1">{{ $member['name'] }}</h3>
-                        <p class="text-primary font-medium mb-4">{{ $member['role'] }}</p>
-                        <p class="text-muted-foreground leading-relaxed">{{ $member['bio'] }}</p>
-                    </article>
-                @endforeach
+            <div class="article-content text-lg">
+                {!! $story !!}
             </div>
         </div>
     </section>
+
+    @if ($team->isNotEmpty())
+        <section class="py-20 bg-gradient-subtle">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Náš tým</h2>
+                    <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        Jsme tým nadšenců, co dělá práci srdcem.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    @foreach ($team as $member)
+                        <article class="bg-white rounded-lg shadow-subtle p-8 text-center">
+                            @if ($member->imageUrl())
+                                <img
+                                    src="{{ $member->imageUrl() }}"
+                                    alt="{{ $member->name }}"
+                                    class="mx-auto h-32 w-32 rounded-full object-cover mb-6"
+                                    loading="lazy"
+                                >
+                            @else
+                                <div class="mx-auto h-32 w-32 rounded-full bg-gradient-industrial mb-6 flex items-center justify-center text-white text-3xl font-bold">
+                                    {{ $member->initials() }}
+                                </div>
+                            @endif
+                            <h3 class="text-2xl font-bold text-industrial-dark mb-1">{{ $member->name }}</h3>
+                            @if ($member->role)
+                                <p class="text-primary font-medium mb-4">{{ $member->role }}</p>
+                            @endif
+                            @if ($member->bio)
+                                <p class="text-muted-foreground leading-relaxed">{{ $member->bio }}</p>
+                            @endif
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 
     <section class="py-20">
         <div class="container mx-auto px-4">

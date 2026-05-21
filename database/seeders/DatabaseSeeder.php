@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             ClimbingPriceSeeder::class,
             ClimbingPostSeeder::class,
+            ClimbingProgramSeeder::class,
+            ClimbingTeamMemberSeeder::class,
+            ClimbingSettingSeeder::class,
         ]);
     }
 }

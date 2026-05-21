@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\ClimbingPrice;
+use App\Models\ClimbingProgram;
+use App\Models\ClimbingSetting;
+use App\Models\ClimbingTeamMember;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,7 +35,10 @@ class ClimbingController extends Controller
      */
     public function about(): View
     {
-        return view('climbing.about');
+        return view('climbing.about', [
+            'story' => ClimbingSetting::value('about.story'),
+            'team' => ClimbingTeamMember::query()->published()->get(),
+        ]);
     }
 
     /**
@@ -52,7 +58,9 @@ class ClimbingController extends Controller
      */
     public function programs(): View
     {
-        return view('climbing.programs');
+        return view('climbing.programs', [
+            'programs' => ClimbingProgram::query()->published()->get(),
+        ]);
     }
 
     /**
