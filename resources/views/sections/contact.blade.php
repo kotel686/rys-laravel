@@ -79,6 +79,7 @@
 
             <form action="{{ route('contact.store') }}" method="POST" class="space-y-4" novalidate>
                 @csrf
+                <input type="hidden" name="source" value="vyskoveprace">
 
                 <div class="hidden" aria-hidden="true">
                     <label>Webová stránka<input type="text" name="website" tabindex="-1" autocomplete="off"></label>

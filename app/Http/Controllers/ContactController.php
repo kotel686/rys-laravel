@@ -9,6 +9,7 @@ use App\Models\ContactMessage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\URL;
 
 /**
  * Handle submissions of the public contact form.
@@ -45,25 +46,35 @@ class ContactController extends Controller
 
         RateLimiter::hit($key, decaySeconds: 3600);
 
-        /** @var array{name: string, email: string, phone: ?string, message: string} $data */
-        $data = $request->safe()->only(['name', 'email', 'phone', 'message']);
+        /** @var array{name: string, email: string, phone: ?string, message: string, source: ?string} $data */
+        $data = $request->safe()->only(['name', 'email', 'phone', 'message', 'source']);
+
+        $source = $data['source'] === ContactMessage::SOURCE_CLIMBING
+            ? ContactMessage::SOURCE_CLIMBING
+            : ContactMessage::SOURCE_VYSKOVEPRACE;
 
         $message = ContactMessage::query()->create([
             'name' => $data['name'],
             'email' => mb_strtolower($data['email']),
             'phone' => $data['phone'] ?? null,
             'message' => $data['message'],
+            'source' => $source,
             'ip_address' => $request->ip(),
         ]);
 
         Log::info('Contact message stored', [
             'id' => $message->id,
             'email' => $message->email,
+            'source' => $source,
             'ip' => $request->ip(),
         ]);
 
+        $redirectUrl = $source === ContactMessage::SOURCE_CLIMBING
+            ? URL::route('climbing.contact') . '#kontakt-formular'
+            : url('/') . '#contact';
+
         return redirect()
-            ->to(url('/') . '#contact')
+            ->to($redirectUrl)
             ->with('contact_success', 'Děkujeme za zprávu, brzy se Vám ozveme.');
     }
 }

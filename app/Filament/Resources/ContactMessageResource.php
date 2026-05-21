@@ -73,6 +73,13 @@ class ContactMessageResource extends Resource
                 TextInput::make('ip_address')
                     ->label('IP adresa')
                     ->disabled(),
+
+                TextInput::make('source')
+                    ->label('Z webu')
+                    ->formatStateUsing(fn (?string $state): string => $state === ContactMessage::SOURCE_CLIMBING
+                        ? 'Lezecká stěna'
+                        : 'Výškové práce')
+                    ->disabled(),
             ]),
 
             Textarea::make('message')
@@ -111,6 +118,15 @@ class ContactMessageResource extends Resource
                     ->dateTime('d. m. Y H:i')
                     ->sortable(),
 
+                Tables\Columns\TextColumn::make('source')
+                    ->label('Z webu')
+                    ->badge()
+                    ->color(fn (string $state): string => $state === ContactMessage::SOURCE_CLIMBING ? 'info' : 'gray')
+                    ->formatStateUsing(fn (string $state): string => $state === ContactMessage::SOURCE_CLIMBING
+                        ? 'Lezecká stěna'
+                        : 'Výškové práce')
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('name')
                     ->label('Jméno')
                     ->searchable(),
@@ -141,6 +157,13 @@ class ContactMessageResource extends Resource
                     ->label('Pouze nevyřízené')
                     ->query(fn (Builder $query): Builder => $query->whereNull('handled_at'))
                     ->default(),
+
+                Tables\Filters\SelectFilter::make('source')
+                    ->label('Z webu')
+                    ->options([
+                        ContactMessage::SOURCE_VYSKOVEPRACE => 'Výškové práce',
+                        ContactMessage::SOURCE_CLIMBING => 'Lezecká stěna',
+                    ]),
             ])
             ->actions([
                 Actions\Action::make('markHandled')

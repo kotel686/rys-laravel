@@ -35,6 +35,7 @@ class ContactRequest extends FormRequest
             'message' => ['required', 'string', 'min:10', 'max:5000'],
             'website' => ['nullable', 'size:0'],
             'consent' => ['accepted'],
+            'source' => ['nullable', 'string', 'in:vyskoveprace,lezeckastena'],
         ];
     }
 

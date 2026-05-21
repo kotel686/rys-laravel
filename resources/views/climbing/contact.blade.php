@@ -30,7 +30,11 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-industrial-dark text-lg mb-2">Adresa</h3>
-                            <p class="text-muted-foreground">Sportovní 123<br>150 00 Praha 5</p>
+                            <p class="text-muted-foreground">
+                                Višňová 308<br>
+                                262 61 Višňová<br>
+                                Středočeský kraj, Česko
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -55,7 +59,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-industrial-dark text-lg mb-2">E-mail</h3>
-                            <a href="mailto:info@lezeckastena.cz" class="text-muted-foreground hover:text-primary transition-colors font-medium">info@lezeckastena.cz</a>
+                            <a href="mailto:franta.rys@gmail.com" class="text-muted-foreground hover:text-primary transition-colors font-medium">franta.rys@gmail.com</a>
                             <p class="text-sm text-muted-foreground mt-1">Odpovídáme do 24 hodin.</p>
                         </div>
                     </div>
@@ -75,16 +79,99 @@
                 </div>
             </div>
 
-            <div class="max-w-3xl mx-auto mt-16 bg-white rounded-lg shadow-subtle p-8 text-center">
-                <h3 class="text-2xl font-bold text-industrial-dark mb-3">Napište nám</h3>
-                <p class="text-muted-foreground mb-6">
-                    Pro přihlášku do kroužku, dotazy nebo rezervaci využijte
-                    kontaktní formulář na hlavním webu Výškové práce Rys.
-                </p>
-                <a href="{{ url('/') }}#contact" class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-gradient-primary text-white font-medium shadow-red hover:opacity-90 transition-opacity">
-                    Přejít na kontaktní formulář
-                    <svg class="ml-2 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+            <div id="kontakt-formular" class="max-w-3xl mx-auto mt-16 bg-white rounded-lg shadow-subtle p-8 scroll-mt-24">
+                <h3 class="text-2xl font-bold text-industrial-dark mb-6">Napište nám</h3>
+
+                @if (session('contact_success'))
+                    <div role="status" class="mb-4 rounded-md bg-green-50 border border-green-200 text-green-800 px-4 py-3">
+                        {{ session('contact_success') }}
+                    </div>
+                @endif
+
+                @if (session('contact_error'))
+                    <div role="alert" class="mb-4 rounded-md bg-red-50 border border-red-200 text-red-800 px-4 py-3">
+                        {{ session('contact_error') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('contact.store') }}" method="POST" class="space-y-4" novalidate>
+                    @csrf
+                    <input type="hidden" name="source" value="lezeckastena">
+
+                    <div class="hidden" aria-hidden="true">
+                        <label>Webová stránka<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="climb-contact-name" class="block text-sm font-medium text-industrial-dark mb-1">Jméno a příjmení *</label>
+                            <input
+                                id="climb-contact-name"
+                                type="text"
+                                name="name"
+                                value="{{ old('name') }}"
+                                required
+                                maxlength="120"
+                                autocomplete="name"
+                                class="w-full rounded-md border border-input bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                            >
+                            @error('name') <p class="text-xs text-red-600 mt-1">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label for="climb-contact-email" class="block text-sm font-medium text-industrial-dark mb-1">E-mail *</label>
+                            <input
+                                id="climb-contact-email"
+                                type="email"
+                                name="email"
+                                value="{{ old('email') }}"
+                                required
+                                maxlength="190"
+                                autocomplete="email"
+                                class="w-full rounded-md border border-input bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                            >
+                            @error('email') <p class="text-xs text-red-600 mt-1">{{ $message }}</p> @enderror
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="climb-contact-phone" class="block text-sm font-medium text-industrial-dark mb-1">Telefon</label>
+                        <input
+                            id="climb-contact-phone"
+                            type="tel"
+                            name="phone"
+                            value="{{ old('phone') }}"
+                            maxlength="32"
+                            autocomplete="tel"
+                            class="w-full rounded-md border border-input bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                        >
+                        @error('phone') <p class="text-xs text-red-600 mt-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div>
+                        <label for="climb-contact-message" class="block text-sm font-medium text-industrial-dark mb-1">Zpráva *</label>
+                        <textarea
+                            id="climb-contact-message"
+                            name="message"
+                            rows="5"
+                            required
+                            minlength="10"
+                            maxlength="5000"
+                            class="w-full rounded-md border border-input bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                        >{{ old('message') }}</textarea>
+                        @error('message') <p class="text-xs text-red-600 mt-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <label class="flex items-start space-x-2 text-sm text-muted-foreground">
+                        <input type="checkbox" name="consent" value="1" required class="mt-1">
+                        <span>Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky.</span>
+                    </label>
+                    @error('consent') <p class="text-xs text-red-600 mt-1">{{ $message }}</p> @enderror
+
+                    <button type="submit" class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-gradient-primary text-white font-medium shadow-red hover:opacity-90 transition-opacity">
+                        Odeslat zprávu
+                    </button>
+                </form>
             </div>
         </div>
     </section>
