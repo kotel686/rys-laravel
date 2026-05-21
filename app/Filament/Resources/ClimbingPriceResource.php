@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ClimbingPriceResource\Pages;
 use App\Models\ClimbingPrice;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -32,7 +33,7 @@ class ClimbingPriceResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Ceník';
 
-    protected static ?string $navigationGroup = 'Lezecká stěna';
+    protected static string|UnitEnum|null $navigationGroup = 'Lezecká stěna';
 
     protected static ?int $navigationSort = 50;
 
