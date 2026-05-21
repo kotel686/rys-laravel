@@ -1,23 +1,9 @@
 @php
     /** @var string $story */
     /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingTeamMember> $team */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingWallParameter> $parameters */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingEquipmentItem> $equipment */
     $title = 'O stěně – Lezecká stěna';
-
-    /** @var list<array{label:string,value:string}> $parameters */
-    $parameters = [
-        ['label' => 'Obtížnost', 'value' => '4 – 9 UIAA'],
-        ['label' => 'Maximální výška', 'value' => '12 metrů'],
-        ['label' => 'Počet cest', 'value' => 'přes 100'],
-        ['label' => 'Celková plocha', 'value' => '400 m²'],
-    ];
-
-    /** @var list<string> $equipment */
-    $equipment = [
-        'Automatická jištění (automat)',
-        'Půjčovna výstroje',
-        'Šatny a sprchy',
-        'Klimatizace',
-    ];
 @endphp
 
 @extends('climbing.layout', ['title' => $title])
@@ -81,39 +67,45 @@
         </section>
     @endif
 
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Technické informace</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white rounded-lg shadow-subtle p-8">
-                    <h3 class="text-xl font-bold text-industrial-dark mb-6">Parametry stěny</h3>
-                    <ul class="space-y-3">
-                        @foreach ($parameters as $param)
-                            <li class="flex items-center justify-between border-b border-border pb-2 last:border-b-0">
-                                <span class="text-muted-foreground">{{ $param['label'] }}</span>
-                                <span class="font-medium text-industrial-dark">{{ $param['value'] }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
+    @if ($parameters->isNotEmpty() || $equipment->isNotEmpty())
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Technické informace</h2>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-subtle p-8">
-                    <h3 class="text-xl font-bold text-industrial-dark mb-6">Vybavení</h3>
-                    <ul class="space-y-3">
-                        @foreach ($equipment as $item)
-                            <li class="flex items-center text-industrial-medium">
-                                <span class="w-2 h-2 bg-primary rounded-full mr-3"></span>
-                                {{ $item }}
-                            </li>
-                        @endforeach
-                    </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    @if ($parameters->isNotEmpty())
+                        <div class="bg-white rounded-lg shadow-subtle p-8">
+                            <h3 class="text-xl font-bold text-industrial-dark mb-6">Parametry stěny</h3>
+                            <ul class="space-y-3">
+                                @foreach ($parameters as $param)
+                                    <li class="flex items-center justify-between border-b border-border pb-2 last:border-b-0">
+                                        <span class="text-muted-foreground">{{ $param->label }}</span>
+                                        <span class="font-medium text-industrial-dark">{{ $param->value }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if ($equipment->isNotEmpty())
+                        <div class="bg-white rounded-lg shadow-subtle p-8">
+                            <h3 class="text-xl font-bold text-industrial-dark mb-6">Vybavení</h3>
+                            <ul class="space-y-3">
+                                @foreach ($equipment as $item)
+                                    <li class="flex items-center text-industrial-medium">
+                                        <span class="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                                        {{ $item->name }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     @include('climbing.partials.cta')
 @endsection

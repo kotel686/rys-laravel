@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\ClimbingEquipmentItem;
 use App\Models\ClimbingPrice;
 use App\Models\ClimbingProgram;
 use App\Models\ClimbingSetting;
 use App\Models\ClimbingTeamMember;
+use App\Models\ClimbingWallParameter;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -40,6 +42,8 @@ class ClimbingController extends Controller
         return view('climbing.about', [
             'story' => ClimbingSetting::value('about.story'),
             'team' => ClimbingTeamMember::query()->published()->get(),
+            'parameters' => ClimbingWallParameter::query()->published()->get(),
+            'equipment' => ClimbingEquipmentItem::query()->published()->get(),
         ]);
     }
 

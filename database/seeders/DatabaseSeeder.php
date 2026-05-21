@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             ClimbingProgramSeeder::class,
             ClimbingTeamMemberSeeder::class,
             ClimbingSettingSeeder::class,
+            ClimbingWallParameterSeeder::class,
+            ClimbingEquipmentItemSeeder::class,
         ]);
     }
 }
