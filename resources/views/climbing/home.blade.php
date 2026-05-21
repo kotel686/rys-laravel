@@ -84,7 +84,7 @@
         </div>
     </section>
 
-    <section class="py-20 bg-gradient-subtle">
+    <section class="py-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Naše programy</h2>
