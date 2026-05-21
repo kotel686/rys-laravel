@@ -4,74 +4,44 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\ClimbingPost;
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Novius\LaravelFilamentNews\Models\NewsCategory;
-use Novius\LaravelFilamentNews\Models\NewsPost;
 
 /**
  * Render the "Aktuality" pages for the Lezecká stěna mini-site.
  *
- * Posts are stored and edited via the {@see \Novius\LaravelFilamentNews}
- * plugin in the Filament admin. They are scoped to the "Lezecká stěna"
- * category (slug `lezecka-stena`) so the same plugin can later host news
- * for other sections of the site without leaking into this one.
+ * News posts are stored as {@see ClimbingPost} rows and edited from the
+ * Filament admin panel.
  */
 class ClimbingNewsController extends Controller
 {
     /**
-     * Slug of the news category used to scope posts to this mini-site.
-     */
-    private const CATEGORY_SLUG = 'lezecka-stena';
-
-    /**
-     * Render the paginated list of climbing-wall news posts.
+     * Render the paginated list of news posts.
      */
     public function index(): View
     {
-        $category = NewsCategory::query()
-            ->where('slug', self::CATEGORY_SLUG)
-            ->first();
-
-        /** @var LengthAwarePaginator<NewsPost> $posts */
-        $posts = NewsPost::query()
+        /** @var LengthAwarePaginator<ClimbingPost> $posts */
+        $posts = ClimbingPost::query()
             ->published()
-            ->when(
-                $category !== null,
-                fn ($query) => $query->whereHas(
-                    'categories',
-                    fn ($q) => $q->whereKey($category->id),
-                ),
-            )
-            ->latest('published_at')
             ->paginate(12)
             ->withQueryString();
 
         return view('climbing.news.index', [
             'posts' => $posts,
-            'category' => $category,
         ]);
     }
 
     /**
-     * Render a single news post by slug.
+     * Render a single news post resolved via route-model binding.
      */
-    public function show(string $slug): View
+    public function show(ClimbingPost $post): View
     {
-        /** @var NewsPost $post */
-        $post = NewsPost::query()
-            ->published()
-            ->where('slug', $slug)
-            ->firstOrFail();
+        abort_unless($post->is_published, 404);
 
-        $related = NewsPost::query()
+        $related = ClimbingPost::query()
             ->published()
             ->whereKeyNot($post->getKey())
-            ->whereHas(
-                'categories',
-                fn ($q) => $q->where('slug', self::CATEGORY_SLUG),
-            )
-            ->latest('published_at')
             ->limit(3)
             ->get();
 

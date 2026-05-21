@@ -1,6 +1,5 @@
 @php
-    /** @var \Illuminate\Pagination\LengthAwarePaginator<\Novius\LaravelFilamentNews\Models\NewsPost> $posts */
-    /** @var \Novius\LaravelFilamentNews\Models\NewsCategory|null $category */
+    /** @var \Illuminate\Pagination\LengthAwarePaginator<\App\Models\ClimbingPost> $posts */
     $title = 'Aktuality – Lezecká stěna';
 @endphp
 
@@ -32,10 +31,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     @foreach ($posts as $post)
                         <article class="bg-white rounded-lg overflow-hidden shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                            @if ($post->card_image || $post->featured_image)
-                                <a href="{{ route('climbing.news.show', $post->slug) }}" class="block h-48 overflow-hidden">
+                            @if ($post->imageUrl())
+                                <a href="{{ route('climbing.news.show', $post) }}" class="block h-48 overflow-hidden">
                                     <img
-                                        src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($post->card_image ?? $post->featured_image) }}"
+                                        src="{{ $post->imageUrl() }}"
                                         alt="{{ $post->title }}"
                                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                         loading="lazy"
@@ -48,25 +47,23 @@
                             @endif
 
                             <div class="p-6 flex flex-col flex-1">
-                                @if ($post->published_at)
-                                    <p class="text-xs uppercase tracking-widest text-muted-foreground mb-2">
-                                        {{ $post->published_at->translatedFormat('j. F Y') }}
-                                    </p>
-                                @endif
+                                <p class="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+                                    {{ ($post->published_at ?? $post->created_at)->translatedFormat('j. F Y') }}
+                                </p>
 
                                 <h2 class="text-xl font-bold text-industrial-dark mb-3 leading-tight">
-                                    <a href="{{ route('climbing.news.show', $post->slug) }}" class="hover:text-primary transition-colors">
+                                    <a href="{{ route('climbing.news.show', $post) }}" class="hover:text-primary transition-colors">
                                         {{ $post->title }}
                                     </a>
                                 </h2>
 
-                                @if ($post->intro)
+                                @if ($post->excerpt)
                                     <p class="text-muted-foreground text-sm leading-relaxed mb-4 flex-1">
-                                        {{ \Illuminate\Support\Str::limit(strip_tags($post->intro), 160) }}
+                                        {{ \Illuminate\Support\Str::limit($post->excerpt, 160) }}
                                     </p>
                                 @endif
 
-                                <a href="{{ route('climbing.news.show', $post->slug) }}" class="inline-flex items-center text-primary hover:text-primary-hover font-medium mt-auto">
+                                <a href="{{ route('climbing.news.show', $post) }}" class="inline-flex items-center text-primary hover:text-primary-hover font-medium mt-auto">
                                     Číst dále
                                     <svg class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                 </a>

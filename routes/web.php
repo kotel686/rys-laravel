@@ -40,5 +40,5 @@ Route::prefix('lezeckastena')->name('climbing.')->group(function (): void {
     Route::get('/kontakt', [ClimbingController::class, 'contact'])->name('contact');
 
     Route::get('/aktuality', [ClimbingNewsController::class, 'index'])->name('news.index');
-    Route::get('/aktuality/{slug}', [ClimbingNewsController::class, 'show'])->name('news.show');
+    Route::get('/aktuality/{post}', [ClimbingNewsController::class, 'show'])->name('news.show');
 });
