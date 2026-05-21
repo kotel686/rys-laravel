@@ -21,7 +21,7 @@
                     @foreach ([
                         '12 metrů vysoká stěna, přes 100 cest',
                         'Automatická jištění a půjčovna výstroje',
-                        'Certifikovaní trenéři s dlouholetou praxí',
+                        'Trenéři s dlouholetou praxí',
                         'Po – Pá 14:00 – 21:00, So – Ne 10:00 – 20:00',
                     ] as $bullet)
                         <li class="flex items-start">

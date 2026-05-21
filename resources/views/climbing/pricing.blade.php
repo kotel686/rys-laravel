@@ -58,9 +58,7 @@
             @endif
 
             <p class="text-center text-sm text-muted-foreground mt-12 max-w-2xl mx-auto">
-                Uvedené ceny jsou včetně DPH. Pro skupinové akce a firemní teambuildingy
-                připravíme individuální nabídku – ozvěte se nám na
-                <a href="{{ route('climbing.contact') }}" class="text-primary hover:text-primary-hover">kontaktní stránce</a>.
+                Uvedené ceny jsou včetně DPH.
             </p>
         </div>
     </section>

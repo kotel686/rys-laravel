@@ -8,7 +8,7 @@
 
             <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-10">
                 @foreach ([
-                    'Profesionální trenéři s certifikací',
+                    'Profesionální trenéři s dlouholetou praxí',
                     'Bezpečné prostředí pro děti všech věkových kategorií',
                     'Moderní vybavení a automatická jištění',
                     'Přátelská atmosféra a rodinný přístup',

@@ -6,7 +6,7 @@
     $perks = [
         [
             'title' => 'Bezpečnost na prvním místě',
-            'description' => 'Moderní bezpečnostní vybavení, certifikovaní trenéři a pravidelné kontroly.',
+            'description' => 'Moderní bezpečnostní vybavení, zkušení trenéři a pravidelné kontroly.',
             'icon' => 'M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z',
         ],
         [
