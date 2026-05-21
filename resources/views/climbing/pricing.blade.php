@@ -34,27 +34,23 @@
                                 {{ $category }}
                             </h2>
 
-                            <div class="overflow-hidden rounded-lg shadow-subtle bg-white">
-                                <table class="w-full">
-                                    <tbody>
-                                        @foreach ($rows as $row)
-                                            <tr class="border-b border-border last:border-b-0">
-                                                <td class="px-6 py-5 align-top">
-                                                    <div class="font-medium text-industrial-dark">{{ $row->name }}</div>
-                                                    @if ($row->description)
-                                                        <p class="text-sm text-muted-foreground mt-1">{{ $row->description }}</p>
-                                                    @endif
-                                                </td>
-                                                <td class="px-6 py-5 text-right align-top whitespace-nowrap">
-                                                    <span class="text-2xl font-bold text-primary">{{ $row->price }}</span>
-                                                    @if ($row->unit)
-                                                        <span class="block text-xs text-muted-foreground">{{ $row->unit }}</span>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            <div class="rounded-lg shadow-subtle bg-white divide-y divide-border">
+                                @foreach ($rows as $row)
+                                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-6 px-6 py-5">
+                                        <div class="min-w-0 flex-1">
+                                            <div class="font-medium text-industrial-dark">{{ $row->name }}</div>
+                                            @if ($row->description)
+                                                <p class="text-sm text-muted-foreground mt-1">{{ $row->description }}</p>
+                                            @endif
+                                        </div>
+                                        <div class="sm:text-right sm:flex-shrink-0">
+                                            <span class="text-2xl font-bold text-primary">{{ $row->price }}</span>
+                                            @if ($row->unit)
+                                                <span class="block text-xs text-muted-foreground">{{ $row->unit }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     @endforeach
