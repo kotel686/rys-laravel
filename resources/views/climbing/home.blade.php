@@ -1,27 +1,6 @@
 @php
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingProgram> $programs */
     $title = 'Lezecká stěna – Objevuj výšky s námi';
-
-    /** @var list<array{title:string,description:string,icon:string,route:string}> $programs */
-    $programs = [
-        [
-            'title' => 'Dětské tréninky',
-            'description' => 'Pravidelné lezecké kroužky pro děti všech věkových kategorií. Zábavné učení základů lezení v bezpečném prostředí.',
-            'icon' => 'M12 6v12M6 12h12',
-            'route' => 'climbing.programs',
-        ],
-        [
-            'title' => 'Tréninky hendikepovaných',
-            'description' => 'Lezení dostupné pro každého. Individuální přístup, vyškolení trenéři a vybavení uzpůsobené potřebám lezců s hendikepem.',
-            'icon' => 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z',
-            'route' => 'climbing.programs',
-        ],
-        [
-            'title' => 'Lezecký oddíl',
-            'description' => 'Závodní příprava pro talentované lezce. Účast na soutěžích a systematický tréninkový program.',
-            'icon' => 'M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z',
-            'route' => 'climbing.programs',
-        ],
-    ];
 
     /** @var list<array{title:string,description:string,icon:string}> $perks */
     $perks = [
@@ -84,32 +63,39 @@
         </div>
     </section>
 
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Naše programy</h2>
-                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Nabízíme širokou škálu programů pro všechny věkové kategorie a úrovně dovedností.
-                </p>
-            </div>
+    @if ($programs->isNotEmpty())
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Naše programy</h2>
+                    <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        Nabízíme širokou škálu programů pro všechny věkové kategorie a úrovně dovedností.
+                    </p>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @foreach ($programs as $program)
-                    <article class="group rounded-lg bg-white overflow-hidden shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300 p-8 text-center">
-                        <div class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary mb-6">
-                            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="{{ $program['icon'] }}"/></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-industrial-dark mb-3 uppercase tracking-wide">{{ $program['title'] }}</h3>
-                        <p class="text-muted-foreground mb-6 leading-relaxed">{{ $program['description'] }}</p>
-                        <a href="{{ route($program['route']) }}" class="inline-flex items-center text-primary hover:text-primary-hover font-medium">
-                            Zjistit více
-                            <svg class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                    </article>
-                @endforeach
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    @foreach ($programs as $program)
+                        <article class="group rounded-lg bg-white overflow-hidden shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300 p-8 text-center">
+                            <div class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary mb-6 text-xl font-bold">
+                                {{ $loop->iteration }}
+                            </div>
+                            <h3 class="text-2xl font-bold text-industrial-dark mb-3 uppercase tracking-wide">{{ $program->title }}</h3>
+                            @if ($program->subtitle)
+                                <p class="text-sm uppercase tracking-widest text-primary mb-3 font-semibold">{{ $program->subtitle }}</p>
+                            @endif
+                            <p class="text-muted-foreground mb-6 leading-relaxed">
+                                {{ \Illuminate\Support\Str::limit($program->description, 160) }}
+                            </p>
+                            <a href="{{ route('climbing.programs') }}" class="inline-flex items-center text-primary hover:text-primary-hover font-medium">
+                                Zjistit více
+                                <svg class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </article>
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <section class="py-20">
         <div class="container mx-auto px-4">

@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder;
 /**
  * Seed the default team members shown on the O stěně page.
  *
- * Idempotent: keyed on `name` via `updateOrCreate`.
+ * All text is Lorem ipsum placeholder. Idempotent: keyed on `name`.
  */
 class ClimbingTeamMemberSeeder extends Seeder
 {
@@ -22,10 +22,16 @@ class ClimbingTeamMemberSeeder extends Seeder
         /** @var list<array{name:string,role:string,bio:string,sort_order:int}> $rows */
         $rows = [
             [
-                'name' => 'František Rys',
-                'role' => 'Hlavní trenér',
-                'bio' => 'Historicky první reprezentant ČR v paralezení, první medailista z mezinárodní soutěže (3. místo z ME ve Villars).',
+                'name' => 'Lorem Ipsum',
+                'role' => 'Dolor sit amet',
+                'bio' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'sort_order' => 10,
+            ],
+            [
+                'name' => 'Consectetur Adipiscing',
+                'role' => 'Tempor incididunt',
+                'bio' => 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                'sort_order' => 20,
             ],
         ];
 

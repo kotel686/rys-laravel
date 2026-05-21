@@ -10,8 +10,10 @@ use Illuminate\Database\Seeder;
 /**
  * Seed the default free-text snippets used on the Lezecká stěna pages.
  *
- * Idempotent: existing rows are left untouched; only the `label` field
- * is refreshed so the admin sees an up-to-date description.
+ * The `value` is Lorem ipsum placeholder; the admin replaces it from
+ * Filament. Idempotent: existing rows keep their `value` (so the admin
+ * doesn't lose edits on re-seed) – only the `label` description is
+ * refreshed.
  */
 class ClimbingSettingSeeder extends Seeder
 {
@@ -24,14 +26,16 @@ class ClimbingSettingSeeder extends Seeder
         $rows = [
             [
                 'key' => 'about.story',
-                'label' => 'O stěně – Náš příběh (úvodní text)',
+                'label' => 'O stěně – Úvodní text (Náš příběh)',
                 'value' => <<<'HTML'
-<p>Lezecká stěna vznikla z lásky k lezení a touhy nabídnout dětem
-i dospělým prostor, kde si můžou vyzkoušet něco nového, posunout
-své hranice a najít komunitu lidí se stejným nadšením.</p>
-<p>Provozuje ji <a href="/">František Rys – Výškové práce</a>, takže
-za vším stojí roky zkušeností s prací ve výškách, důraz na bezpečnost
-a profesionalitu.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat.</p>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+cupidatat non proident, sunt in culpa qui officia deserunt mollit
+anim id est laborum.</p>
 HTML,
             ],
         ];

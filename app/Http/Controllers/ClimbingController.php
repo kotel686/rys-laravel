@@ -27,7 +27,9 @@ class ClimbingController extends Controller
      */
     public function home(): View
     {
-        return view('climbing.home');
+        return view('climbing.home', [
+            'programs' => ClimbingProgram::query()->published()->limit(3)->get(),
+        ]);
     }
 
     /**

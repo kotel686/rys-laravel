@@ -11,7 +11,8 @@ use Illuminate\Database\Seeder;
  * Seed example pricing rows for the Lezecká stěna section.
  *
  * Idempotent: uses `updateOrCreate` keyed on (category, name) so re-running
- * the seeder will not duplicate rows.
+ * the seeder will not duplicate rows. All text content is Lorem ipsum
+ * placeholder – replace from the Filament admin panel.
  */
 class ClimbingPriceSeeder extends Seeder
 {
@@ -22,23 +23,21 @@ class ClimbingPriceSeeder extends Seeder
     {
         /** @var list<array{category:string,name:string,price:string,unit:?string,description:?string,sort_order:int}> $rows */
         $rows = [
-            ['category' => 'Vstupné', 'name' => 'Dospělý',                    'price' => '150 Kč', 'unit' => '/ vstup', 'description' => 'Vstup na celý den.',          'sort_order' => 10],
-            ['category' => 'Vstupné', 'name' => 'Student / senior',           'price' => '120 Kč', 'unit' => '/ vstup', 'description' => 'Po předložení průkazu.',      'sort_order' => 20],
-            ['category' => 'Vstupné', 'name' => 'Dítě do 15 let',             'price' => '90 Kč',  'unit' => '/ vstup', 'description' => 'Doprovod dospělé osoby povinný.', 'sort_order' => 30],
-            ['category' => 'Vstupné', 'name' => 'Rodinné vstupné',            'price' => '380 Kč', 'unit' => '/ vstup', 'description' => '2 dospělí + max. 2 děti.',    'sort_order' => 40],
+            ['category' => 'Lorem ipsum 1', 'name' => 'Lorem ipsum dolor',      'price' => '100 Kč', 'unit' => '/ vstup',   'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'sort_order' => 10],
+            ['category' => 'Lorem ipsum 1', 'name' => 'Sit amet consectetur',   'price' => '150 Kč', 'unit' => '/ vstup',   'description' => 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'sort_order' => 20],
+            ['category' => 'Lorem ipsum 1', 'name' => 'Adipiscing elit',        'price' => '90 Kč',  'unit' => '/ vstup',   'description' => 'Ut enim ad minim veniam, quis nostrud exercitation.', 'sort_order' => 30],
 
-            ['category' => 'Permanentky', 'name' => 'Permanentka 10 vstupů',  'price' => '1 200 Kč', 'unit' => null,    'description' => 'Platnost 12 měsíců, přenosná.','sort_order' => 10],
-            ['category' => 'Permanentky', 'name' => 'Měsíční permanentka',    'price' => '1 600 Kč', 'unit' => '/ měsíc','description' => 'Neomezený počet vstupů.',     'sort_order' => 20],
-            ['category' => 'Permanentky', 'name' => 'Roční permanentka',      'price' => '12 000 Kč','unit' => '/ rok', 'description' => 'Neomezený počet vstupů.',     'sort_order' => 30],
+            ['category' => 'Lorem ipsum 2', 'name' => 'Duis aute irure',        'price' => '1 200 Kč', 'unit' => null,      'description' => 'Ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'sort_order' => 10],
+            ['category' => 'Lorem ipsum 2', 'name' => 'Reprehenderit voluptate','price' => '1 600 Kč', 'unit' => '/ měsíc', 'description' => 'Duis aute irure dolor in reprehenderit in voluptate.', 'sort_order' => 20],
+            ['category' => 'Lorem ipsum 2', 'name' => 'Velit esse cillum',      'price' => '12 000 Kč','unit' => '/ rok',   'description' => 'Excepteur sint occaecat cupidatat non proident.', 'sort_order' => 30],
 
-            ['category' => 'Kroužky', 'name' => 'Dětský kroužek 1× týdně',    'price' => '2 500 Kč', 'unit' => '/ pololetí', 'description' => '60 minut, max. 8 dětí na trenéra.', 'sort_order' => 10],
-            ['category' => 'Kroužky', 'name' => 'Dětský kroužek 2× týdně',    'price' => '4 200 Kč', 'unit' => '/ pololetí', 'description' => '60 minut, max. 8 dětí na trenéra.', 'sort_order' => 20],
-            ['category' => 'Kroužky', 'name' => 'Lezecký oddíl',              'price' => 'od 4 500 Kč','unit' => '/ pololetí', 'description' => 'Výběrové tréninky, závodní příprava.', 'sort_order' => 30],
-            ['category' => 'Kroužky', 'name' => 'Tréninky hendikepovaných',   'price' => 'individuálně', 'unit' => null, 'description' => 'Cena dle programu, kontaktujte nás.', 'sort_order' => 40],
+            ['category' => 'Lorem ipsum 3', 'name' => 'Officia deserunt',       'price' => '2 500 Kč', 'unit' => '/ pololetí', 'description' => 'Mollit anim id est laborum sed ut perspiciatis.', 'sort_order' => 10],
+            ['category' => 'Lorem ipsum 3', 'name' => 'Unde omnis iste',        'price' => '4 200 Kč', 'unit' => '/ pololetí', 'description' => 'Natus error sit voluptatem accusantium doloremque.', 'sort_order' => 20],
+            ['category' => 'Lorem ipsum 3', 'name' => 'Laudantium totam',       'price' => 'od 4 500 Kč','unit' => '/ pololetí', 'description' => 'Rem aperiam eaque ipsa quae ab illo inventore.', 'sort_order' => 30],
 
-            ['category' => 'Půjčovna', 'name' => 'Lezečky',                   'price' => '60 Kč',  'unit' => '/ den', 'description' => null, 'sort_order' => 10],
-            ['category' => 'Půjčovna', 'name' => 'Sedák',                     'price' => '40 Kč',  'unit' => '/ den', 'description' => null, 'sort_order' => 20],
-            ['category' => 'Půjčovna', 'name' => 'Kompletní set',             'price' => '120 Kč', 'unit' => '/ den', 'description' => 'Lezečky + sedák + jistítko.', 'sort_order' => 30],
+            ['category' => 'Lorem ipsum 4', 'name' => 'Quasi architecto',       'price' => '60 Kč',  'unit' => '/ den', 'description' => null, 'sort_order' => 10],
+            ['category' => 'Lorem ipsum 4', 'name' => 'Beatae vitae',           'price' => '40 Kč',  'unit' => '/ den', 'description' => null, 'sort_order' => 20],
+            ['category' => 'Lorem ipsum 4', 'name' => 'Dicta sunt explicabo',   'price' => '120 Kč', 'unit' => '/ den', 'description' => 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur.', 'sort_order' => 30],
         ];
 
         foreach ($rows as $row) {

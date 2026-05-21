@@ -11,8 +11,7 @@ use Illuminate\Support\Carbon;
 /**
  * Seed example news / aktuality posts for the Lezecká stěna mini-site.
  *
- * Idempotent: keyed on `slug` via `updateOrCreate`, so re-running the
- * seeder will not duplicate rows.
+ * All text is Lorem ipsum placeholder. Idempotent: keyed on `slug`.
  */
 class ClimbingPostSeeder extends Seeder
 {
@@ -24,96 +23,92 @@ class ClimbingPostSeeder extends Seeder
         /** @var list<array{slug:string,title:string,excerpt:string,content:string,published_at:Carbon}> $posts */
         $posts = [
             [
-                'slug' => 'otevreni-nove-lezecke-steny',
-                'title' => 'Otevřeli jsme novou lezeckou stěnu',
-                'excerpt' => 'Po měsících příprav je tu velký den – naše lezecká stěna oficiálně otevírá své brány pro veřejnost.',
+                'slug' => 'lorem-ipsum-1',
+                'title' => 'Lorem ipsum dolor sit amet',
+                'excerpt' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'content' => <<<'HTML'
-<p>Dlouho jsme se na tento okamžik těšili a teď je tu – <strong>lezecká stěna v Praze 5 je oficiálně otevřená</strong>. Připravili jsme pro Vás moderní zázemí, přes 100 cest, automatická jištění a kompletní půjčovnu vybavení.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <strong>Ut enim ad minim veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-<h2>Co u nás najdete</h2>
+<h2>Lorem ipsum dolor</h2>
 <ul>
-    <li>12 metrů vysokou stěnu s obtížnostmi 4 – 9 UIAA</li>
-    <li>400 m² lezecké plochy se cestami pro úplné začátečníky i pokročilé</li>
-    <li>Automatická jištění (auto-belay), takže si zalezete i sami</li>
-    <li>Půjčovnu výstroje – lezeček, sedáků a jistítek</li>
+    <li>Lorem ipsum dolor sit amet</li>
+    <li>Consectetur adipiscing elit</li>
+    <li>Sed do eiusmod tempor incididunt</li>
+    <li>Ut labore et dolore magna aliqua</li>
 </ul>
 
-<h2>Otevírací doba</h2>
-<p>Provoz jsme rozdělili tak, aby vyhovoval pracujícím i rodinám s dětmi:</p>
+<h2>Sed do eiusmod</h2>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur:</p>
 <ul>
-    <li><strong>Pondělí – Pátek:</strong> 14:00 – 21:00</li>
-    <li><strong>Sobota – Neděle:</strong> 10:00 – 20:00</li>
+    <li><strong>Excepteur:</strong> sint occaecat cupidatat non proident</li>
+    <li><strong>Officia:</strong> deserunt mollit anim id est laborum</li>
 </ul>
 
-<p>Těšíme se na Vás. Pokud byste si chtěli vyzkoušet lezení poprvé, ozvěte se nám – domluvíme úvodní instruktáž s certifikovaným trenérem.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
 HTML,
                 'published_at' => Carbon::now()->subDays(2),
             ],
 
             [
-                'slug' => 'nabor-do-detskych-krouzku',
-                'title' => 'Nábor do dětských kroužků na nové pololetí',
-                'excerpt' => 'Otevíráme přihlášky do dětských lezeckých kroužků. Skupiny pro začátečníky i pokročilé, věkové kategorie 6 – 15 let.',
+                'slug' => 'lorem-ipsum-2',
+                'title' => 'Consectetur adipiscing elit',
+                'excerpt' => 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
                 'content' => <<<'HTML'
-<p>Vyrostlo Vám doma nadšené dítě, které by chtělo lézt? <strong>Otevíráme nábor do dětských lezeckých kroužků</strong> na nové pololetí.</p>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <strong>Excepteur sint occaecat</strong> cupidatat non proident.</p>
 
-<h2>Pro koho jsou kroužky</h2>
-<p>Skupiny dělíme podle věku a úrovně:</p>
+<h2>Sed ut perspiciatis</h2>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam:</p>
 <ul>
-    <li><strong>Mladší žáci (6 – 10 let)</strong> – základy lezení formou hry, hra na bezpečnost, koordinace</li>
-    <li><strong>Starší žáci (11 – 15 let)</strong> – technika lezení, bouldering, první závody</li>
+    <li>Lorem ipsum dolor sit amet 1</li>
+    <li>Lorem ipsum dolor sit amet 2</li>
 </ul>
 
-<h2>Jak se přihlásit</h2>
+<h2>Ut enim ad minim</h2>
 <ol>
-    <li>Vyplňte přihlášku na <a href="/lezeckastena/kontakt">kontaktní stránce</a> nebo zavolejte.</li>
-    <li>Domluvíme s Vámi termín ukázkové lekce zdarma.</li>
-    <li>Pokud Vás kroužek nadchne, zaplatíte pololetní kurzovné a jste v.</li>
+    <li>Eaque ipsa quae ab illo inventore veritatis</li>
+    <li>Quasi architecto beatae vitae dicta sunt</li>
+    <li>Nemo enim ipsam voluptatem quia voluptas</li>
 </ol>
 
-<p>Kapacita je omezená na <strong>8 dětí na trenéra</strong>, takže to s přihláškou neodkládejte. Ceník najdete na <a href="/lezeckastena/cenik">stránce Ceník</a>.</p>
+<p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
 HTML,
                 'published_at' => Carbon::now()->subDays(7),
             ],
 
             [
-                'slug' => 'tretí-misto-z-me-ve-villars',
-                'title' => 'František Rys vybojoval bronz na ME v paralezení',
-                'excerpt' => 'Náš hlavní trenér František Rys přivezl z ME v paralezení ve švýcarském Villars historickou medaili pro Českou republiku.',
+                'slug' => 'lorem-ipsum-3',
+                'title' => 'Sed do eiusmod tempor incididunt',
+                'excerpt' => 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
                 'content' => <<<'HTML'
-<p>O víkendu se ve švýcarském Villars konalo Mistrovství Evropy v paralezení a <strong>František Rys</strong> – náš hlavní trenér – přivezl <strong>třetí místo</strong>. Je to historicky první medaile pro Českou republiku z mezinárodní soutěže v této disciplíně.</p>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium <strong>doloremque laudantium</strong>, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
 
-<h2>Cesta k medaili</h2>
-<p>František se účastnil kategorie pro lezce s pohybovým hendikepem. V kvalifikaci postoupil ze čtvrtého místa, ve finále si polepšil a obsadil stupínek vítězů.</p>
+<h2>Nemo enim ipsam</h2>
+<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos.</p>
 
-<blockquote>"Je to obrovský úspěch nejen pro mě, ale pro celou českou paralezeckou komunitu. Doufám, že to motivuje další lezce, aby se nebáli zkusit závodit."</blockquote>
+<blockquote>"Lorem ipsum dolor sit amet, consectetur adipiscing elit – sed quia non numquam eius modi tempora incidunt."</blockquote>
 
-<h2>Co bude dál</h2>
-<p>Příští sezónu se František připravuje na <strong>Mistrovství světa</strong>. U nás na stěně mezitím trénuje další talentované paralezce – pokud máte zájem o tréninky uzpůsobené hendikepu, ozvěte se nám.</p>
+<h2>Ut labore et dolore</h2>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
 HTML,
                 'published_at' => Carbon::now()->subDays(14),
             ],
 
             [
-                'slug' => 'vanocni-otviracky-doba-2026',
-                'title' => 'Otevírací doba o Vánocích a Novém roce',
-                'excerpt' => 'Sváteční režim na stěně – kdy máme zavřeno, kdy si naopak můžete přijít zalézt místo televize.',
+                'slug' => 'lorem-ipsum-4',
+                'title' => 'Excepteur sint occaecat cupidatat',
+                'excerpt' => 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
                 'content' => <<<'HTML'
-<p>Blíží se konec roku a my pro Vás máme přehled <strong>otevírací doby o svátcích</strong>.</p>
+<p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</p>
 
-<h2>Sváteční režim</h2>
+<h2>Vel illum qui dolorem</h2>
 <ul>
-    <li><strong>24. 12. (Štědrý den)</strong> – zavřeno</li>
-    <li><strong>25. – 26. 12.</strong> – zavřeno</li>
-    <li><strong>27. – 30. 12.</strong> – otevřeno 10:00 – 18:00</li>
-    <li><strong>31. 12. (Silvestr)</strong> – otevřeno 10:00 – 14:00</li>
-    <li><strong>1. 1.</strong> – zavřeno</li>
-    <li><strong>od 2. 1.</strong> – běžný provoz</li>
+    <li><strong>Lorem ipsum 1</strong> – dolor sit amet consectetur</li>
+    <li><strong>Lorem ipsum 2</strong> – adipiscing elit sed do eiusmod</li>
+    <li><strong>Lorem ipsum 3</strong> – tempor incididunt ut labore</li>
+    <li><strong>Lorem ipsum 4</strong> – et dolore magna aliqua</li>
 </ul>
 
-<p>Pokud máte rádi lezení místo televizního maratonu, využijte mezisvátečních dnů – obvykle bývá u nás méně lidí, takže si pořádně zalezete bez fronty na cesty.</p>
-
-<p>Hezké svátky a pevný úchop!</p>
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</p>
 HTML,
                 'published_at' => Carbon::now()->subDays(30),
             ],

@@ -8,9 +8,11 @@ use App\Models\ClimbingProgram;
 use Illuminate\Database\Seeder;
 
 /**
- * Seed the default program cards shown on the Kroužky a oddíl page.
+ * Seed the default program cards shown on the Kroužky a oddíl page and
+ * on the home page's "Naše programy" section.
  *
- * Idempotent: keyed on `title` via `updateOrCreate`.
+ * All text is Lorem ipsum placeholder – the admin replaces it from
+ * Filament. Idempotent: keyed on `title`.
  */
 class ClimbingProgramSeeder extends Seeder
 {
@@ -22,38 +24,38 @@ class ClimbingProgramSeeder extends Seeder
         /** @var list<array{title:string,subtitle:string,description:string,bullets:list<array{text:string}>,sort_order:int}> $rows */
         $rows = [
             [
-                'title' => 'Dětské tréninky',
-                'subtitle' => 'Pravidelné lezecké kroužky',
-                'description' => 'Pravidelné lezecké kroužky pro děti všech věkových kategorií. Zábavné učení základů lezení v bezpečném prostředí pod dohledem zkušených trenérů.',
+                'title' => 'Program 1',
+                'subtitle' => 'Lorem ipsum dolor sit amet',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
                 'bullets' => [
-                    ['text' => 'Děti od 6 do 15 let'],
-                    ['text' => 'Skupiny rozdělené podle věku a úrovně'],
-                    ['text' => 'Důraz na bezpečnost a správnou techniku'],
-                    ['text' => '1× nebo 2× týdně'],
+                    ['text' => 'Lorem ipsum dolor sit amet'],
+                    ['text' => 'Consectetur adipiscing elit'],
+                    ['text' => 'Sed do eiusmod tempor incididunt'],
+                    ['text' => 'Ut labore et dolore magna aliqua'],
                 ],
                 'sort_order' => 10,
             ],
             [
-                'title' => 'Tréninky hendikepovaných',
-                'subtitle' => 'Lezení pro každého',
-                'description' => 'Pravidelné lezecké tréninky uzpůsobené potřebám lezců s hendikepem. Individuální přístup, vyškolení trenéři a speciální vybavení.',
+                'title' => 'Program 2',
+                'subtitle' => 'Duis aute irure dolor',
+                'description' => 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.',
                 'bullets' => [
-                    ['text' => 'Individuální plán a tempo'],
-                    ['text' => 'Trenéři s praxí v paralezení'],
-                    ['text' => 'Bezbariérový přístup ke stěně'],
-                    ['text' => 'Možnost asistence'],
+                    ['text' => 'Excepteur sint occaecat cupidatat'],
+                    ['text' => 'Non proident sunt in culpa'],
+                    ['text' => 'Qui officia deserunt mollit'],
+                    ['text' => 'Anim id est laborum'],
                 ],
                 'sort_order' => 20,
             ],
             [
-                'title' => 'Lezecký oddíl',
-                'subtitle' => 'Závodní příprava',
-                'description' => 'Závodní příprava pro talentované lezce. Systematický tréninkový program, účast na soutěžích a podpora cesty k reprezentaci.',
+                'title' => 'Program 3',
+                'subtitle' => 'Sed ut perspiciatis unde',
+                'description' => 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis.',
                 'bullets' => [
-                    ['text' => 'Výběrové tréninky pro pokročilé'],
-                    ['text' => 'Soutěžní příprava (obtížnost, bouldering)'],
-                    ['text' => 'Systematická roční periodizace'],
-                    ['text' => 'Doprovod na závody'],
+                    ['text' => 'Nemo enim ipsam voluptatem'],
+                    ['text' => 'Quia voluptas sit aspernatur'],
+                    ['text' => 'Aut odit aut fugit'],
+                    ['text' => 'Sed quia consequuntur magni'],
                 ],
                 'sort_order' => 30,
             ],
