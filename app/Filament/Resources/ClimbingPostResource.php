@@ -157,6 +157,12 @@ class ClimbingPostResource extends Resource
                 Tables\Filters\TernaryFilter::make('is_published')->label('Publikováno'),
             ])
             ->actions([
+                Actions\Action::make('view')
+                    ->label('Otevřít článek')
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->color('gray')
+                    ->url(fn (ClimbingPost $record): string => route('climbing.news.show', $record))
+                    ->openUrlInNewTab(),
                 Actions\EditAction::make(),
                 Actions\DeleteAction::make(),
             ])
