@@ -95,7 +95,22 @@ class ClimbingPostResource extends Resource
 
             RichEditor::make('content')
                 ->label('Obsah')
-                ->disableToolbarButtons(['attachFiles'])
+                ->toolbarButtons([
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strike',
+                    'h1',
+                    'h2',
+                    'h3',
+                    'blockquote',
+                    'bulletList',
+                    'orderedList',
+                    'link',
+                    'codeBlock',
+                    'undo',
+                    'redo',
+                ])
                 ->columnSpanFull(),
 
             Toggle::make('is_published')
