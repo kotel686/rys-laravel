@@ -6,21 +6,21 @@
 @extends('climbing.layout', ['title' => $title])
 
 @section('climbing-content')
-    <section class="bg-gradient-industrial text-white py-20">
-        <div class="container mx-auto px-4">
-            <p class="text-sm text-industrial-light mb-3">
+    <section class="pt-16 pb-12">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <p class="text-sm text-muted-foreground mb-3">
                 <a href="{{ route('climbing.home') }}" class="hover:text-primary transition-colors">Domů</a>
-                <span class="mx-2 text-industrial-medium">»</span>
-                <span>Aktuality</span>
+                <span class="mx-2 text-industrial-light">»</span>
+                <span class="text-industrial-dark">Aktuality</span>
             </p>
-            <h1 class="text-4xl md:text-6xl font-bold">Aktuality</h1>
-            <p class="text-xl text-industrial-light mt-4 max-w-2xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-industrial-dark">Aktuality</h1>
+            <p class="text-lg text-muted-foreground mt-4 max-w-2xl">
                 Novinky ze stěny, závodní výsledky, nábory do kroužků a chystané akce.
             </p>
         </div>
     </section>
 
-    <section class="py-20">
+    <section class="pb-20">
         <div class="container mx-auto px-4">
             @if ($posts->isEmpty())
                 <p class="text-center text-muted-foreground max-w-xl mx-auto">

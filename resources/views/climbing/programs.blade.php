@@ -42,21 +42,21 @@
 @extends('climbing.layout', ['title' => $title])
 
 @section('climbing-content')
-    <section class="bg-gradient-industrial text-white py-20">
-        <div class="container mx-auto px-4">
-            <p class="text-sm text-industrial-light mb-3">
+    <section class="pt-16 pb-12">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <p class="text-sm text-muted-foreground mb-3">
                 <a href="{{ route('climbing.home') }}" class="hover:text-primary transition-colors">Domů</a>
-                <span class="mx-2 text-industrial-medium">»</span>
-                <span>Kroužky a oddíl</span>
+                <span class="mx-2 text-industrial-light">»</span>
+                <span class="text-industrial-dark">Kroužky a oddíl</span>
             </p>
-            <h1 class="text-4xl md:text-6xl font-bold">Kroužky a oddíl</h1>
-            <p class="text-xl text-industrial-light mt-4 max-w-2xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-industrial-dark">Kroužky a oddíl</h1>
+            <p class="text-lg text-muted-foreground mt-4 max-w-2xl">
                 Programy pro děti, hendikepované lezce i závodníky. Vyberte si, co Vám sedí.
             </p>
         </div>
     </section>
 
-    <section class="py-20">
+    <section class="pb-20">
         <div class="container mx-auto px-4">
             <div class="space-y-12 max-w-5xl mx-auto">
                 @foreach ($programs as $i => $program)

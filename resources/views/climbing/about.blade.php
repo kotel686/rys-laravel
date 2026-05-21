@@ -30,18 +30,18 @@
 @extends('climbing.layout', ['title' => $title])
 
 @section('climbing-content')
-    <section class="bg-gradient-industrial text-white py-20">
-        <div class="container mx-auto px-4">
-            <p class="text-sm text-industrial-light mb-3">
+    <section class="pt-16 pb-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <p class="text-sm text-muted-foreground mb-3">
                 <a href="{{ route('climbing.home') }}" class="hover:text-primary transition-colors">Domů</a>
-                <span class="mx-2 text-industrial-medium">»</span>
-                <span>O stěně</span>
+                <span class="mx-2 text-industrial-light">»</span>
+                <span class="text-industrial-dark">O stěně</span>
             </p>
-            <h1 class="text-4xl md:text-6xl font-bold">Náš příběh</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-industrial-dark">Náš příběh</h1>
         </div>
     </section>
 
-    <section class="py-20">
+    <section class="pb-20">
         <div class="container mx-auto px-4 max-w-4xl">
             <p class="text-lg text-industrial-medium leading-relaxed mb-6">
                 Lezecká stěna vznikla z lásky k lezení a touhy nabídnout dětem
