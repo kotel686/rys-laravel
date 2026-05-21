@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Models\Project;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -32,6 +33,8 @@ class ProjectResource extends Resource
     protected static ?string $modelLabel = 'Reference';
 
     protected static ?string $pluralModelLabel = 'Reference';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Výškové práce';
 
     protected static ?int $navigationSort = 10;
 

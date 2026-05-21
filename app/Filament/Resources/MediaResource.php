@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MediaResource\Pages;
 use App\Models\Media;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -36,6 +37,8 @@ class MediaResource extends Resource
     protected static ?string $modelLabel = 'Položka galerie';
 
     protected static ?string $pluralModelLabel = 'Fotky a videa';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Výškové práce';
 
     protected static ?int $navigationSort = 20;
 

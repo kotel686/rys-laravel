@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactMessageResource\Pages;
 use App\Models\ContactMessage;
 use BackedEnum;
+use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -34,6 +35,8 @@ class ContactMessageResource extends Resource
     protected static ?string $modelLabel = 'Poptávka';
 
     protected static ?string $pluralModelLabel = 'Poptávky';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Výškové práce';
 
     protected static ?int $navigationSort = 30;
 

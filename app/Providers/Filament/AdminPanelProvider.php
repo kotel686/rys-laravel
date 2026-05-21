@@ -41,9 +41,15 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Red,
             ])
             ->navigationItems([
-                NavigationItem::make('Zobrazit web')
+                NavigationItem::make('Web Výškové práce')
                     ->url(fn (): string => url('/'), shouldOpenInNewTab: true)
                     ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->group('Výškové práce')
+                    ->sort(-100),
+                NavigationItem::make('Web Lezecké stěny')
+                    ->url(fn (): string => route('climbing.home'), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-arrow-top-right-on-square')
+                    ->group('Lezecká stěna')
                     ->sort(-100),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
