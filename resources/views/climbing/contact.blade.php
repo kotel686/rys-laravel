@@ -1,5 +1,6 @@
 @php
     $title = 'Kontakt – Lezecká stěna';
+    $openingHours = \App\Models\ClimbingOpeningHour::forDisplay();
 @endphp
 
 @extends('climbing.layout', ['title' => $title])
@@ -17,10 +18,20 @@
                 Přijeďte k nám nebo nám napište. Rádi Vám zodpovíme dotazy ohledně
                 lezení, kroužků i přihlášek.
             </p>
+
+            <div class="mt-6">
+                <a
+                    href="#kontakt-formular"
+                    class="inline-flex items-center px-5 py-3 rounded-md bg-gradient-primary text-white font-medium shadow-red hover:opacity-90 transition-opacity"
+                >
+                    Napsat zprávu
+                    <svg class="ml-2 h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </div>
     </section>
 
-    <section class="pb-20">
+    <section class="pb-16">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="bg-white rounded-lg shadow-subtle p-6">
@@ -35,15 +46,6 @@
                                 262 61 Višňová<br>
                                 Středočeský kraj, Česko
                             </p>
-                            <a
-                                href="https://mapy.com/s/nubadevadu"
-                                target="_blank"
-                                rel="noopener"
-                                class="inline-flex items-center mt-3 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
-                            >
-                                Naplánovat trasu
-                                <svg class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -81,9 +83,6 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-industrial-dark text-lg mb-2">Otevírací doba</h3>
-                            @php
-                                $openingHours = \App\Models\ClimbingOpeningHour::forDisplay();
-                            @endphp
                             @forelse ($openingHours as $row)
                                 <p class="text-muted-foreground">{{ $row->day_label }}: {{ $row->hours }}</p>
                             @empty
@@ -93,20 +92,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="max-w-5xl mx-auto mt-12 bg-white rounded-lg shadow-subtle overflow-hidden">
-                <iframe
-                    src="https://mapy.com/s/nubadevadu"
-                    title="Mapa – Višňová 308"
-                    class="w-full h-[400px] block"
-                    style="border: 0"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-            </div>
-
-            <div id="kontakt-formular" class="max-w-3xl mx-auto mt-16 bg-white rounded-lg shadow-subtle p-8 scroll-mt-24">
-                <h3 class="text-2xl font-bold text-industrial-dark mb-6">Napište nám</h3>
+    <section class="pb-16">
+        <div class="container mx-auto px-4">
+            <div id="kontakt-formular" class="max-w-3xl mx-auto bg-white rounded-lg shadow-subtle p-8 scroll-mt-24">
+                <h3 class="text-2xl font-bold text-industrial-dark mb-2">Napište nám</h3>
+                <p class="text-muted-foreground mb-6">
+                    Vyplňte formulář a ozveme se Vám obvykle do 24 hodin.
+                </p>
 
                 @if (session('contact_success'))
                     <div role="status" class="mb-4 rounded-md bg-green-50 border border-green-200 text-green-800 px-4 py-3">
@@ -198,6 +193,21 @@
                         Odeslat zprávu
                     </button>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-subtle overflow-hidden">
+                <iframe
+                    src="https://mapy.com/s/nubadevadu"
+                    title="Mapa – Višňová 308"
+                    class="w-full h-[400px] block"
+                    style="border: 0"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
             </div>
         </div>
     </section>
