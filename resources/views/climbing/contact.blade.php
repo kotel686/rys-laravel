@@ -72,8 +72,14 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-industrial-dark text-lg mb-2">Otevírací doba</h3>
-                            <p class="text-muted-foreground">Po – Pá: 14:00 – 21:00</p>
-                            <p class="text-muted-foreground">So – Ne: 10:00 – 20:00</p>
+                            @php
+                                $openingHours = \App\Models\ClimbingOpeningHour::forDisplay();
+                            @endphp
+                            @forelse ($openingHours as $row)
+                                <p class="text-muted-foreground">{{ $row->day_label }}: {{ $row->hours }}</p>
+                            @empty
+                                <p class="text-muted-foreground">Otevírací doba bude brzy zveřejněna.</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>

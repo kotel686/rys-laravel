@@ -11,7 +11,7 @@
                 <span class="block text-primary mt-2">pro děti i dospělé</span>
             </h2>
             <p class="text-lg text-industrial-light mb-8 leading-relaxed">
-                Kromě výškových prací provozujeme i moderní lezeckou stěnu.
+                Kromě výškové práce provozujeme i moderní lezeckou stěnu.
                 Pojďte se podívat.
             </p>
 

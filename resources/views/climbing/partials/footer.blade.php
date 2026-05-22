@@ -24,13 +24,20 @@
                 </ul>
             </div>
 
-            <div>
-                <h4 class="text-lg font-bold mb-4">Otevírací doba</h4>
-                <ul class="space-y-2 text-industrial-light text-sm">
-                    <li><span class="text-white font-medium">Po – Pá</span><br>14:00 – 21:00</li>
-                    <li><span class="text-white font-medium">So – Ne</span><br>10:00 – 20:00</li>
-                </ul>
-            </div>
+            @php
+                $openingHours = \App\Models\ClimbingOpeningHour::forDisplay();
+            @endphp
+
+            @if ($openingHours->isNotEmpty())
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Otevírací doba</h4>
+                    <ul class="space-y-2 text-industrial-light text-sm">
+                        @foreach ($openingHours as $row)
+                            <li><span class="text-white font-medium">{{ $row->day_label }}</span><br>{{ $row->hours }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
 
         <hr class="border-industrial-medium my-8">

@@ -47,6 +47,7 @@ class AdminPanelProvider extends PanelProvider
                 'Stěna – Kroužky',
                 'Stěna – Ceník',
                 'Stěna – Aktuality',
+                'Stěna – Kontakt',
             ])
             ->navigationItems([
                 NavigationItem::make('Web Výškové práce')
