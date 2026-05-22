@@ -115,4 +115,18 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Contact-form Recipient(s)
+    |--------------------------------------------------------------------------
+    |
+    | Comma-separated list of e-mail addresses that receive a
+    | notification each time a visitor submits a contact form. Falls
+    | back to ADMIN_EMAIL when CONTACT_RECIPIENT is empty so the admin
+    | doesn't silently miss messages right after first deployment.
+    |
+    */
+
+    'contact_recipient' => env('CONTACT_RECIPIENT', env('ADMIN_EMAIL')),
+
 ];
