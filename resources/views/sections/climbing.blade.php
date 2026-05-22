@@ -20,7 +20,7 @@
                 <ul class="space-y-2 text-industrial-light mb-8">
                     @foreach ([
                         '12 metrů vysoká stěna, přes 100 cest',
-                        'Automatická jištění a půjčovna výstroje',
+                        'Půjčovna výstroje',
                         'Trenéři s dlouholetou praxí',
                         'Po – Pá 14:00 – 21:00, So – Ne 10:00 – 20:00',
                     ] as $bullet)

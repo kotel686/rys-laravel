@@ -46,7 +46,7 @@ class ClimbingEquipmentItemResource extends Resource
         return $schema->components([
             TextInput::make('name')
                 ->label('Název položky')
-                ->helperText('Krátký bod, např. „Automatická jištění (automat)".')
+                ->helperText('Krátký bod ze seznamu vybavení.')
                 ->required()
                 ->maxLength(160),
 

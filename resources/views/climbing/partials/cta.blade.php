@@ -10,7 +10,7 @@
                 @foreach ([
                     'Profesionální trenéři s dlouholetou praxí',
                     'Bezpečné prostředí pro děti všech věkových kategorií',
-                    'Moderní vybavení a automatická jištění',
+                    'Moderní vybavení',
                     'Přátelská atmosféra a rodinný přístup',
                 ] as $perk)
                     <li class="flex items-start space-x-3 bg-white/5 backdrop-blur-sm rounded-md p-4 border border-white/10">
