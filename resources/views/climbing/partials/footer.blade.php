@@ -4,9 +4,7 @@
             <div class="md:col-span-2">
                 <h3 class="text-2xl font-bold text-primary mb-4">Lezecká stěna</h3>
                 <p class="text-industrial-light mb-4 leading-relaxed max-w-md">
-                    Moderní lezecká stěna pro děti i dospělé. Profesionální trenéři,
-                    přátelská atmosféra a bezpečné prostředí pro všechny věkové
-                    kategorie.
+                    Moderní lezecká stěna pro děti i dospělé.
                 </p>
                 <p class="text-sm text-industrial-light">
                     Provozuje <a href="{{ url('/') }}" class="hover:text-primary transition-colors">František Rys – Výškové práce</a>.
