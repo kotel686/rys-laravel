@@ -8,11 +8,11 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -44,18 +44,10 @@ class AdminPanelProvider extends PanelProvider
                 'Výškové práce',
                 'Lezecká stěna',
             ])
-            ->navigationItems([
-                NavigationItem::make('Web Výškové práce')
-                    ->url(fn (): string => url('/'), shouldOpenInNewTab: true)
-                    ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->group('Výškové práce')
-                    ->sort(-100),
-                NavigationItem::make('Web Lezecké stěny')
-                    ->url(fn (): string => route('climbing.home'), shouldOpenInNewTab: true)
-                    ->icon('heroicon-o-arrow-top-right-on-square')
-                    ->group('Lezecká stěna')
-                    ->sort(-100),
-            ])
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_END,
+                fn (): string => view('filament.partials.site-links')->render(),
+            )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
