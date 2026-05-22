@@ -12,7 +12,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-background text-foreground antialiased">
+<body class="min-h-screen bg-background text-foreground antialiased {{ $bodyClass ?? '' }}">
     {{ $slot ?? '' }}
     @yield('content')
 </body>
