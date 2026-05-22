@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\ClimbingEquipmentItem;
+use App\Models\ClimbingPayment;
 use App\Models\ClimbingPrice;
 use App\Models\ClimbingProgram;
 use App\Models\ClimbingSetting;
@@ -56,6 +57,7 @@ class ClimbingController extends Controller
 
         return view('climbing.pricing', [
             'grouped' => ClimbingPrice::groupByCategory($prices),
+            'payments' => ClimbingPayment::query()->published()->get(),
         ]);
     }
 

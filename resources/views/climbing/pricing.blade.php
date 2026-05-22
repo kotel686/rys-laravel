@@ -1,5 +1,6 @@
 @php
     /** @var array<string, list<\App\Models\ClimbingPrice>> $grouped */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingPayment> $payments */
     $title = 'Ceník – Lezecká stěna';
 @endphp
 
@@ -62,6 +63,43 @@
             </p>
         </div>
     </section>
+
+    @if ($payments->isNotEmpty())
+        <section class="pb-20">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-industrial-dark mb-8 border-l-4 border-primary pl-4">
+                        Platba QR kódem
+                    </h2>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach ($payments as $payment)
+                            <div class="bg-white rounded-lg shadow-subtle p-6 flex flex-col">
+                                <h3 class="text-lg font-bold text-industrial-dark mb-4 text-center">{{ $payment->title }}</h3>
+
+                                <div class="bg-white border border-border rounded-md p-3 flex items-center justify-center mb-4">
+                                    <img
+                                        src="{{ $payment->imageUrl() }}"
+                                        alt="QR kód – {{ $payment->title }}"
+                                        class="block w-auto h-auto max-w-full max-h-64"
+                                        loading="lazy"
+                                    >
+                                </div>
+
+                                @if ($payment->description)
+                                    <p class="text-sm text-muted-foreground whitespace-pre-line text-center">{{ $payment->description }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <p class="text-center text-xs text-muted-foreground mt-6">
+                        Naskenujte QR kód v aplikaci své banky a potvrďte platbu.
+                    </p>
+                </div>
+            </div>
+        </section>
+    @endif
 
     @include('climbing.partials.cta')
 @endsection
