@@ -16,7 +16,7 @@
             </p>
             <h1 class="text-4xl md:text-5xl font-bold text-industrial-dark">Ceník</h1>
             <p class="text-lg text-muted-foreground mt-4 max-w-2xl">
-                Vstupné, permanentky a tréninky. Platby v hotovosti i kartou.
+                Vstupné, permanentky a tréninky.
             </p>
         </div>
     </section>
