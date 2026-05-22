@@ -1,28 +1,34 @@
 {{--
-    Two external "open the public site" buttons rendered into the
-    Filament admin topbar via PanelsRenderHook::TOPBAR_END (registered
-    in AdminPanelProvider). Hidden below md so the topbar doesn't get
-    cramped on mobile – admin users can still hit /admin → resources
-    and type the URL by hand if needed.
+    Two pill-style buttons rendered into the Filament admin topbar via
+    PanelsRenderHook::TOPBAR_END. Uses Filament's own button component
+    so the styling matches the panel; the wrapper uses inline styles
+    because our app's Tailwind classes aren't compiled into Filament's
+    CSS bundle.
 --}}
-<div class="hidden md:flex items-center gap-2">
-    <a
-        href="{{ url('/') }}"
+<div style="display: flex; gap: 0.5rem; align-items: center; margin-right: 0.5rem;">
+    <x-filament::button
+        tag="a"
+        :href="url('/')"
         target="_blank"
         rel="noopener"
-        class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-100 hover:text-primary-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-primary-400 transition"
+        color="gray"
+        size="xs"
+        icon="heroicon-o-arrow-top-right-on-square"
+        icon-position="after"
     >
-        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 3h7v7M10 14L21 3M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg>
         Web Výškové práce
-    </a>
+    </x-filament::button>
 
-    <a
-        href="{{ route('climbing.home') }}"
+    <x-filament::button
+        tag="a"
+        :href="route('climbing.home')"
         target="_blank"
         rel="noopener"
-        class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-100 hover:text-primary-600 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-primary-400 transition"
+        color="gray"
+        size="xs"
+        icon="heroicon-o-arrow-top-right-on-square"
+        icon-position="after"
     >
-        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 3h7v7M10 14L21 3M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg>
         Web Lezecké stěny
-    </a>
+    </x-filament::button>
 </div>
