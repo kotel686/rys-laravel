@@ -5,7 +5,7 @@
     because our app's Tailwind classes aren't compiled into Filament's
     CSS bundle.
 --}}
-<div style="display: flex; gap: 0.5rem; align-items: center; margin-right: 0.5rem;">
+<div style="display: flex; gap: 0.5rem; align-items: center; margin-right: 0.75rem;">
     <x-filament::button
         tag="a"
         :href="url('/')"

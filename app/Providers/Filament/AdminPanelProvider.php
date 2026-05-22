@@ -45,7 +45,7 @@ class AdminPanelProvider extends PanelProvider
                 'Lezecká stěna',
             ])
             ->renderHook(
-                PanelsRenderHook::TOPBAR_END,
+                PanelsRenderHook::GLOBAL_SEARCH_BEFORE,
                 fn (): string => view('filament.partials.site-links')->render(),
             )
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
