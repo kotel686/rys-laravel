@@ -10,7 +10,7 @@
 
 @section('climbing-content')
     <section class="pt-16 pb-12">
-        <div class="container mx-auto px-4 max-w-4xl">
+        <div class="container mx-auto px-4 max-w-5xl">
             <p class="text-sm text-muted-foreground mb-3">
                 <a href="{{ route('climbing.home') }}" class="hover:text-primary transition-colors">Domů</a>
                 <span class="mx-2 text-industrial-light">»</span>
@@ -21,7 +21,7 @@
     </section>
 
     <section class="pb-20">
-        <div class="container mx-auto px-4 max-w-4xl">
+        <div class="container mx-auto px-4 max-w-5xl">
             <div class="article-content text-lg">
                 {!! $story !!}
             </div>
@@ -38,7 +38,7 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     @foreach ($team as $member)
                         <article class="bg-white rounded-lg shadow-subtle p-8 text-center">
                             @if ($member->imageUrl())
