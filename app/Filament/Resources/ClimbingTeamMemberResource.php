@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\AboutWall;
 use App\Filament\Resources\ClimbingTeamMemberResource\Pages;
 use App\Models\ClimbingTeamMember;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
@@ -34,7 +34,7 @@ class ClimbingTeamMemberResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Tým';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Stěna – O stěně';
+    protected static ?string $cluster = AboutWall::class;
 
     protected static ?int $navigationSort = 20;
 

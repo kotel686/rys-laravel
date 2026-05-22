@@ -43,11 +43,6 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 'Výškové práce',
                 'Lezecká stěna',
-                'Stěna – O stěně',
-                'Stěna – Kroužky',
-                'Stěna – Ceník',
-                'Stěna – Aktuality',
-                'Stěna – Kontakt',
             ])
             ->navigationItems([
                 NavigationItem::make('Web Výškové práce')
@@ -62,6 +57,7 @@ class AdminPanelProvider extends PanelProvider
                     ->sort(-100),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
+            ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,

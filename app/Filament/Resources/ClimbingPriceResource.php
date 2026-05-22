@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\Pricing;
 use App\Filament\Resources\ClimbingPriceResource\Pages;
 use App\Models\ClimbingPrice;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -33,7 +33,7 @@ class ClimbingPriceResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Ceník';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Stěna – Ceník';
+    protected static ?string $cluster = Pricing::class;
 
     protected static ?int $navigationSort = 10;
 

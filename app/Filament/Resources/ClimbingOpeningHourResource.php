@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\Contact;
 use App\Filament\Resources\ClimbingOpeningHourResource\Pages;
 use App\Models\ClimbingOpeningHour;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -33,7 +33,7 @@ class ClimbingOpeningHourResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Otevírací doba';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Stěna – Kontakt';
+    protected static ?string $cluster = Contact::class;
 
     protected static ?int $navigationSort = 10;
 

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\Programs;
 use App\Filament\Resources\ClimbingProgramResource\Pages;
 use App\Models\ClimbingProgram;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
@@ -34,7 +34,7 @@ class ClimbingProgramResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Programy';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Stěna – Kroužky';
+    protected static ?string $cluster = Programs::class;
 
     protected static ?int $navigationSort = 10;
 

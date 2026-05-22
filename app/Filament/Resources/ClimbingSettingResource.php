@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\AboutWall;
 use App\Filament\Resources\ClimbingSettingResource\Pages;
 use App\Models\ClimbingSetting;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
@@ -35,7 +35,7 @@ class ClimbingSettingResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Úvodní text';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Stěna – O stěně';
+    protected static ?string $cluster = AboutWall::class;
 
     protected static ?int $navigationSort = 10;
 

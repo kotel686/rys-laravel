@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\AboutWall;
 use App\Filament\Resources\ClimbingEquipmentItemResource\Pages;
 use App\Models\ClimbingEquipmentItem;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -32,7 +32,7 @@ class ClimbingEquipmentItemResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Vybavení';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Stěna – O stěně';
+    protected static ?string $cluster = AboutWall::class;
 
     protected static ?int $navigationSort = 40;
 

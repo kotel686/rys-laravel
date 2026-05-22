@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Filament\Clusters\News;
 use App\Filament\Resources\ClimbingPostResource\Pages;
 use App\Models\ClimbingPost;
 use BackedEnum;
-use UnitEnum;
 use Filament\Actions;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
@@ -38,7 +38,7 @@ class ClimbingPostResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Aktuality';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Stěna – Aktuality';
+    protected static ?string $cluster = News::class;
 
     protected static ?int $navigationSort = 10;
 
