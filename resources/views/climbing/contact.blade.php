@@ -79,6 +79,17 @@
                 </div>
             </div>
 
+            <div class="max-w-6xl mx-auto mt-12 bg-white rounded-lg shadow-subtle overflow-hidden">
+                <iframe
+                    src="https://mapy.com/s/nubadevadu"
+                    title="Mapa – Višňová 308"
+                    class="w-full h-[400px] block"
+                    style="border: 0"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+            </div>
+
             <div id="kontakt-formular" class="max-w-3xl mx-auto mt-16 bg-white rounded-lg shadow-subtle p-8 scroll-mt-24">
                 <h3 class="text-2xl font-bold text-industrial-dark mb-6">Napište nám</h3>
 
