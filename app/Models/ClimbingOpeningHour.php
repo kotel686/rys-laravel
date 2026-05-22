@@ -64,18 +64,31 @@ class ClimbingOpeningHour extends Model
     /**
      * Memoised list of published rows for the footer / contact card.
      *
+     * Reads the cache defensively – if the stored value isn't an
+     * Eloquent Collection (e.g. it deserialized to
+     * __PHP_Incomplete_Class because the model wasn't loaded when the
+     * cache entry was written), we transparently overwrite it with a
+     * fresh query instead of throwing.
+     *
      * @return Collection<int, self>
      */
     public static function forDisplay(): Collection
     {
-        /** @var Collection<int, self> $rows */
-        $rows = Cache::remember(
-            self::CACHE_KEY,
-            now()->addMinutes(10),
-            fn (): Collection => self::query()->published()->get(),
-        );
+        try {
+            $cached = Cache::get(self::CACHE_KEY);
+        } catch (\Throwable) {
+            $cached = null;
+        }
 
-        return $rows;
+        if ($cached instanceof Collection) {
+            /** @var Collection<int, self> $cached */
+            return $cached;
+        }
+
+        $fresh = self::query()->published()->get();
+        Cache::put(self::CACHE_KEY, $fresh, now()->addMinutes(10));
+
+        return $fresh;
     }
 
     /**
