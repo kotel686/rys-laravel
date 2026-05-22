@@ -35,6 +35,15 @@
                                 262 61 Višňová<br>
                                 Středočeský kraj, Česko
                             </p>
+                            <a
+                                href="https://mapy.com/s/nubadevadu"
+                                target="_blank"
+                                rel="noopener"
+                                class="inline-flex items-center mt-3 text-sm font-medium text-primary hover:text-primary-hover transition-colors"
+                            >
+                                Naplánovat trasu
+                                <svg class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
                         </div>
                     </div>
                 </div>
