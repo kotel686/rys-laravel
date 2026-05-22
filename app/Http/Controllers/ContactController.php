@@ -90,28 +90,30 @@ class ContactController extends Controller
     /**
      * Forward the message to the configured operator inbox(es).
      *
-     * Failures (misconfigured SMTP, transient outage, …) are caught and
-     * logged so the visitor still gets a successful response and the row
-     * stays in the admin panel for manual follow-up.
+     * The DB row is the source of truth – e-mail is best-effort. If no
+     * recipient is configured (fresh install, .env missing the value)
+     * or the mail driver isn't set up correctly, we silently log and
+     * move on. The visitor never sees a 500 and the admin still has
+     * the submission in /admin → Poptávky.
      */
     private function notifyOperator(ContactMessage $message): void
     {
-        $recipients = $this->resolveRecipients();
-
-        if ($recipients === []) {
-            Log::warning('Contact message stored but no recipient configured', [
-                'id' => $message->id,
-            ]);
-
-            return;
-        }
-
         try {
+            $recipients = $this->resolveRecipients();
+
+            if ($recipients === []) {
+                Log::info('Contact message stored without e-mail notification (no recipient configured).', [
+                    'id' => $message->id,
+                ]);
+
+                return;
+            }
+
             Mail::to($recipients)->send(new ContactMessageNotification($message));
         } catch (\Throwable $e) {
-            Log::error('Contact message notification failed to send', [
+            Log::warning('Contact message notification skipped.', [
                 'id' => $message->id,
-                'error' => $e->getMessage(),
+                'reason' => $e->getMessage(),
             ]);
         }
     }
