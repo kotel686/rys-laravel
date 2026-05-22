@@ -40,13 +40,13 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-3">
-                <a href="{{ url('/') }}"
-                   class="inline-flex items-center px-3 py-2 text-sm border border-industrial-medium text-industrial-medium rounded-md hover:bg-industrial-dark hover:text-white hover:border-industrial-dark transition-colors">
-                    Výškové práce
-                </a>
                 <a href="{{ route('climbing.contact') }}"
                    class="inline-flex items-center px-3 py-2 text-sm bg-gradient-primary text-white rounded-md hover:opacity-90 transition-opacity shadow-red">
                     Přijeďte k nám
+                </a>
+                <a href="{{ url('/') }}"
+                   class="inline-flex items-center px-3 py-2 text-sm border border-industrial-medium text-industrial-medium rounded-md hover:bg-industrial-dark hover:text-white hover:border-industrial-dark transition-colors">
+                    Výškové práce
                 </a>
             </div>
 
@@ -78,8 +78,8 @@
                     </a>
                 @endforeach
                 <div class="flex flex-col space-y-2 px-4 pt-4 border-t border-border">
-                    <a href="{{ url('/') }}" class="inline-flex items-center px-3 py-2 text-sm border border-industrial-medium text-industrial-medium rounded-md">Výškové práce</a>
                     <a @click="open = false" href="{{ route('climbing.contact') }}" class="inline-flex items-center px-3 py-2 text-sm bg-gradient-primary text-white rounded-md">Přijeďte k nám</a>
+                    <a href="{{ url('/') }}" class="inline-flex items-center px-3 py-2 text-sm border border-industrial-medium text-industrial-medium rounded-md">Výškové práce</a>
                 </div>
             </div>
         </div>
