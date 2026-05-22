@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => $title ?? 'Lezecká stěna – František Rys'])
+@extends('layouts.app', ['title' => $title ?? 'Lezecká stěna – František Rys', 'bodyClass' => 'climbing'])
 
 @section('content')
     @include('climbing.partials.navigation')
