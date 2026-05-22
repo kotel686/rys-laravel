@@ -7,22 +7,22 @@
         [
             'title' => 'Bezpečnost na prvním místě',
             'description' => 'Moderní bezpečnostní vybavení, zkušení trenéři a pravidelné kontroly.',
-            'icon' => 'M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z',
+            'icon' => '<path d="M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z"/>',
         ],
         [
             'title' => 'Zkušený tým',
             'description' => 'Trenéři s dlouholetými zkušenostmi a láskou k lezení.',
-            'icon' => 'M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+            'icon' => '<path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
         ],
         [
             'title' => 'Moderní vybavení',
             'description' => 'Stěna, která doslova voní novotou.',
-            'icon' => 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
+            'icon' => '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
         ],
         [
             'title' => 'Rodinná atmosféra',
             'description' => 'Přátelské prostředí, kde se každý cítí jako doma.',
-            'icon' => 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z',
+            'icon' => '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
         ],
     ];
 @endphp
@@ -110,7 +110,7 @@
                 @foreach ($perks as $perk)
                     <div class="bg-white border border-border rounded-lg p-6 text-center shadow-subtle">
                         <div class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white mb-4">
-                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="{{ $perk['icon'] }}"/></svg>
+                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{!! $perk['icon'] !!}</svg>
                         </div>
                         <h3 class="text-lg font-bold text-industrial-dark mb-2">{{ $perk['title'] }}</h3>
                         <p class="text-sm text-muted-foreground">{{ $perk['description'] }}</p>
