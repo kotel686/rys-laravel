@@ -6,7 +6,7 @@
 
 @section('climbing-content')
     <section class="pt-16 pb-12">
-        <div class="container mx-auto px-4 max-w-6xl">
+        <div class="container mx-auto px-4 max-w-5xl">
             <p class="text-sm text-muted-foreground mb-3">
                 <a href="{{ route('climbing.home') }}" class="hover:text-primary transition-colors">Domů</a>
                 <span class="mx-2 text-industrial-light">»</span>
@@ -22,7 +22,7 @@
 
     <section class="pb-20">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="bg-white rounded-lg shadow-subtle p-6">
                     <div class="flex items-start space-x-4">
                         <div class="bg-primary p-3 rounded-full text-white">
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="max-w-6xl mx-auto mt-12 bg-white rounded-lg shadow-subtle overflow-hidden">
+            <div class="max-w-5xl mx-auto mt-12 bg-white rounded-lg shadow-subtle overflow-hidden">
                 <iframe
                     src="https://mapy.com/s/nubadevadu"
                     title="Mapa – Višňová 308"

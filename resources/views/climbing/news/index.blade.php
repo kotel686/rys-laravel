@@ -7,7 +7,7 @@
 
 @section('climbing-content')
     <section class="pt-16 pb-12">
-        <div class="container mx-auto px-4 max-w-6xl">
+        <div class="container mx-auto px-4 max-w-5xl">
             <p class="text-sm text-muted-foreground mb-3">
                 <a href="{{ route('climbing.home') }}" class="hover:text-primary transition-colors">Domů</a>
                 <span class="mx-2 text-industrial-light">»</span>
@@ -28,7 +28,7 @@
                     sledujte tuto stránku.
                 </p>
             @else
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     @foreach ($posts as $post)
                         <article class="bg-white rounded-lg overflow-hidden shadow-subtle hover:shadow-industrial hover:-translate-y-1 transition-all duration-300 flex flex-col">
                             @if ($post->imageUrl())
@@ -72,7 +72,7 @@
                     @endforeach
                 </div>
 
-                <div class="mt-12 max-w-6xl mx-auto">
+                <div class="mt-12 max-w-5xl mx-auto">
                     {{ $posts->links() }}
                 </div>
             @endif
