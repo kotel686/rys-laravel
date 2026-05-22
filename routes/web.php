@@ -10,23 +10,17 @@ use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
- * Subdomain catch-all → /lezeckastena.
+ * Subdomain catch-all: stena.vyskovepracerys.cz → /lezeckastena/…
  *
- * Both lezeckastena.vyskovepracerys.cz (legacy) and the new shorter
- * stena.vyskovepracerys.cz point at the same Laravel app; every path
- * is 301-redirected onto the equivalent /lezeckastena/… URL on the
- * main domain. Declared before the main routes so the host match
- * takes precedence.
+ * Production handles this at the Nginx vhost level (return 301 …) for
+ * speed; the Laravel route stays as a safety net for the case where
+ * the vhost forwards the request to the app instead.
  */
-foreach ([
-    'stena.vyskovepracerys.cz',
-    'lezeckastena.vyskovepracerys.cz',
-] as $climbingHost) {
-    Route::domain($climbingHost)->group(function (): void {
-        Route::any('{any?}', [ClimbingController::class, 'redirectFromSubdomain'])
-            ->where('any', '.*');
-    });
-}
+Route::domain('stena.vyskovepracerys.cz')->group(function (): void {
+    Route::any('{any?}', [ClimbingController::class, 'redirectFromSubdomain'])
+        ->where('any', '.*')
+        ->name('climbing.subdomain.redirect');
+});
 
 Route::get('/', HomeController::class)->name('home');
 
