@@ -31,7 +31,7 @@
 
 @section('climbing-content')
     <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/climbing/hero.png')">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/climbing/hero.jpg')">
             <div class="absolute inset-0 bg-industrial-dark/80"></div>
         </div>
 
