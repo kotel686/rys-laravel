@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\ClimbingEquipmentItem;
+use App\Models\ClimbingGalleryImage;
 use App\Models\ClimbingPayment;
 use App\Models\ClimbingPrice;
 use App\Models\ClimbingProgram;
@@ -32,6 +33,7 @@ class ClimbingController extends Controller
     {
         return view('climbing.home', [
             'programs' => ClimbingProgram::query()->published()->limit(3)->get(),
+            'gallery' => ClimbingGalleryImage::query()->published()->get(),
         ]);
     }
 

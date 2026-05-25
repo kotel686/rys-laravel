@@ -1,5 +1,6 @@
 @php
     /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingProgram> $programs */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClimbingGalleryImage> $gallery */
     $title = 'Lezecká stěna – Objevuj výšky s námi';
 
     /** @var list<array{title:string,description:string,icon:string}> $perks */
@@ -91,6 +92,37 @@
                                 <svg class="ml-1 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                         </article>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if ($gallery->isNotEmpty())
+        <section class="py-20 bg-gradient-subtle">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-industrial-dark mb-6">Fotogalerie</h2>
+                    <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        Podívejte se, jak to u nás vypadá.
+                    </p>
+                </div>
+
+                <div class="pswp-gallery grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                    @foreach ($gallery as $image)
+                        <a href="{{ $image->imageUrl() }}"
+                           @if ($image->width && $image->height)
+                               data-pswp-width="{{ $image->width }}"
+                               data-pswp-height="{{ $image->height }}"
+                           @endif
+                           target="_blank"
+                           rel="noreferrer"
+                           class="group block overflow-hidden rounded-lg shadow-subtle hover:shadow-industrial transition-shadow aspect-square bg-muted">
+                            <img src="{{ $image->imageUrl() }}"
+                                 alt="{{ $image->alt ?? '' }}"
+                                 loading="lazy"
+                                 class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        </a>
                     @endforeach
                 </div>
             </div>
