@@ -11,7 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'climbing.dev-lock' => \App\Http\Middleware\ClimbingDevLock::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

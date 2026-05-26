@@ -31,7 +31,7 @@ Route::post('/kontakt', [ContactController::class, 'store'])
     ->middleware('throttle:10,60')
     ->name('contact.store');
 
-Route::prefix('lezeckastena')->name('climbing.')->group(function (): void {
+Route::prefix('lezeckastena')->name('climbing.')->middleware('climbing.dev-lock')->group(function (): void {
     Route::get('/', [ClimbingController::class, 'home'])->name('home');
     Route::get('/o-stene', [ClimbingController::class, 'about'])->name('about');
     Route::get('/cenik', [ClimbingController::class, 'pricing'])->name('pricing');
